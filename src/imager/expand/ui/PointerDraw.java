@@ -15,10 +15,10 @@ import imager.expand.GII_HUD;
 import mindustry.Vars;
 import mindustry.entities.Sized;
 import mindustry.entities.abilities.ShieldArcAbility;
-import mindustry.gen.Building;
+// import mindustry.gen.Building;
 import mindustry.gen.Iconc;
 import mindustry.gen.Unit;
-import mindustry.graphics.Drawf;
+// import mindustry.graphics.Drawf;
 import mindustry.graphics.Pal;
 import mindustry.ui.Styles;
 
@@ -94,44 +94,45 @@ public class PointerDraw{
 					GII_HUD.root.addChild(table);
 					table.actions(Actions.fadeIn(0.125f));
 				}
-			}else{
-				Building unit = (Building)cur;
-				
-				if(cur != last){
-					Table table = new Table(Styles.black5){{
-						color.a = 0;
-						
-						
-						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
-						
-						bar2.blinkable = true;
-						bar2.blinkColor = Pal.redderDust;
-						bar2.blinked = true;
-						
-						add(bar2).grow();
-						
-//						add(Iconc.defense + "Armor: " + unit.block.armor);
-						
-						update(() -> {
-							Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
-							setPosition(pos.x, pos.y, Align.top);
-							setSize(Mathf.clamp(unit.hitSize() * 3.5f, 150f, 250f) * Vars.renderer.getDisplayScale(), 13 * Vars.renderer.getDisplayScale());
-							margin(2f * Vars.renderer.getDisplayScale());
-							
-							if(unit != cur && !hasActions()){
-								actions(Actions.fadeOut(0.25f), Actions.remove());
-							}
-						});
-						
-						touchable = Touchable.disabled;
-					}};
-					
-					Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
-					table.setPosition(pos.x, pos.y, Align.top);
-					GII_HUD.root.addChild(table);
-					table.actions(Actions.fadeIn(0.125f));
-				}
 			}
+// 			else{
+// 				Building unit = (Building)cur;
+				
+// 				if(cur != last){
+// 					Table table = new Table(Styles.black5){{
+// 						color.a = 0;
+						
+						
+// 						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
+						
+// 						bar2.blinkable = true;
+// 						bar2.blinkColor = Pal.redderDust;
+// 						bar2.blinked = true;
+						
+// 						add(bar2).grow();
+						
+// //						add(Iconc.defense + "Armor: " + unit.block.armor);
+						
+// 						update(() -> {
+// 							Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
+// 							setPosition(pos.x, pos.y, Align.top);
+// 							setSize(Mathf.clamp(unit.hitSize() * 3.5f, 150f, 250f) * Vars.renderer.getDisplayScale(), 13 * Vars.renderer.getDisplayScale());
+// 							margin(2f * Vars.renderer.getDisplayScale());
+							
+// 							if(unit != cur && !hasActions()){
+// 								actions(Actions.fadeOut(0.25f), Actions.remove());
+// 							}
+// 						});
+						
+// 						touchable = Touchable.disabled;
+// 					}};
+					
+// 					Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
+// 					table.setPosition(pos.x, pos.y, Align.top);
+// 					GII_HUD.root.addChild(table);
+// 					table.actions(Actions.fadeIn(0.125f));
+// 				}
+// 			}
 		}
 		
 		last = cur;
@@ -149,11 +150,12 @@ public class PointerDraw{
 						break;
 					}
 				}
-			}else{
-				Building unit = (Building)cur;
-				if(Vars.state.rules.fog && unit.inFogTo(Vars.player.team()))Draw.rect(unit.block.fullIcon, unit.x, unit.y, unit.block.rotate ? unit.rotation * 90 : 0);
-				Drawf.square(unit.x, unit.y, (unit.block.size * Vars.tilesize) / (1.7f) + 1.5f, 45, unit.team.color);
 			}
+			// else{
+			// 	Building unit = (Building)cur;
+			// 	if(Vars.state.rules.fog && unit.inFogTo(Vars.player.team()))Draw.rect(unit.block.fullIcon, unit.x, unit.y, unit.block.rotate ? unit.rotation * 90 : 0);
+			// 	Drawf.square(unit.x, unit.y, (unit.block.size * Vars.tilesize) / (1.7f) + 1.5f, 45, unit.team.color);
+			// }
 		}
 	}
 }

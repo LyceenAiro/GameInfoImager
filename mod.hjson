@@ -1,9 +1,9 @@
 displayName: "Game Info Imager"
-author: "Yuria"
+author: "Yuria & LyceenAiro"
 name: "game-info-imager"
 main: "imager.GII_Plugin"
-description: "Show the range of turrets and units.\nShow the units the next wave will spawn."
-version: "1.3"
+description: "Show the range of units.\nShow the units the next wave will spawn."
+version: "1.4"
 hidden: "true"
 
-minGameVersion: 141.2
+minGameVersion: 146
