@@ -276,8 +276,7 @@ public class GII_EventListeners{
 		});
 		
 		Events.on(EventType.UnitCreateEvent.class, e -> {
-			units.add(e.unit);
-			// if(e.unit != null && addUnit.get(e.unit))units.add(e.unit);
+			if(e.unit != null && addUnit.get(e.unit))units.add(e.unit);
 		});
 		
 		Events.run(EventType.Trigger.draw, () -> {
