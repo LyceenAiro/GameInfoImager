@@ -35,7 +35,7 @@ public class GII_Plugin extends Plugin{
 	public static int buildingShowMinSize = 1;
 	public static float unitShowMinSize = 1;
 	
-	public static boolean drawAlly, drawHighlight, showHealthBar;
+	public static boolean drawAlly, drawHighlight, showHealthBar, showBulidHealth;
 	
 	public GII_Plugin(){
 		Events.on(ClientLoadEvent.class, e -> {
@@ -82,6 +82,7 @@ public class GII_Plugin extends Plugin{
 		GII_EventListeners.load();
 		GII_HUD.load();
 		
+		showBulidHealth = Core.settings.getBool(SHOW_BUILD_HEALTH_BAR, true);
 		showHealthBar = Core.settings.getBool(SHOW_UNIT_HEALTH_BAR, true);
 		drawAlly = Core.settings.getBool(SHOW_ALLY, true);
 		drawHighlight = Core.settings.getBool(SHOW_HIGHLIGHT, true);
