@@ -95,7 +95,7 @@ public class PointerDraw{
 					table.actions(Actions.fadeIn(0.125f));
 				}
 			}
-			else if(Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true)){
+			else if(GII_Plugin.showBulidHealth){
 				Building unit = (Building)cur;
 				
 				if(cur != last){
@@ -151,7 +151,7 @@ public class PointerDraw{
 					}
 				}
 			}
-			else if(Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true)){
+			else if(GII_Plugin.showBulidHealth){
 				Building unit = (Building)cur;
 				if(Vars.state.rules.fog && unit.inFogTo(Vars.player.team()))Draw.rect(unit.block.fullIcon, unit.x, unit.y, unit.block.rotate ? unit.rotation * 90 : 0);
 				Drawf.square(unit.x, unit.y, (unit.block.size * Vars.tilesize) / (1.7f) + 1.5f, 45, unit.team.color);
