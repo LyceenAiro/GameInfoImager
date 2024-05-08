@@ -236,7 +236,6 @@ public class GII_EventListeners{
 			PointerDraw.update();
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
-			GII_Plugin.showBulidHealth = Core.settings.getBool(GII_Plugin.SHOW_BUILD_HEALTH_BAR, true);
 			
 //			if(timer.get(12f)){
 //				taskQueue.post(() -> {
@@ -277,7 +276,8 @@ public class GII_EventListeners{
 		});
 		
 		Events.on(EventType.UnitCreateEvent.class, e -> {
-			if(e.unit != null && addUnit.get(e.unit))units.add(e.unit);
+			units.add(e.unit);
+			// if(e.unit != null && addUnit.get(e.unit))units.add(e.unit);
 		});
 		
 		Events.run(EventType.Trigger.draw, () -> {

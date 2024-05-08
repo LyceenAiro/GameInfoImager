@@ -72,7 +72,7 @@ public class PointerDraw{
 						
 						add(bar2).grow().row();
 						
-//						add(Iconc.defense + "Armor: " + unit.armor);
+						add(Iconc.defense + "Armor: " + unit.armor);
 						
 						
 						update(() -> {
@@ -111,7 +111,7 @@ public class PointerDraw{
 						
 						add(bar2).grow();
 						
-//						add(Iconc.defense + "Armor: " + unit.block.armor);
+						add(Iconc.defense + "Armor: " + unit.block.armor);
 						
 						update(() -> {
 							Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
