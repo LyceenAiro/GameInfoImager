@@ -15,10 +15,10 @@ import imager.expand.GII_HUD;
 import mindustry.Vars;
 import mindustry.entities.Sized;
 import mindustry.entities.abilities.ShieldArcAbility;
-// import mindustry.gen.Building;
+import mindustry.gen.Building;
 import mindustry.gen.Iconc;
 import mindustry.gen.Unit;
-// import mindustry.graphics.Drawf;
+import mindustry.graphics.Drawf;
 import mindustry.graphics.Pal;
 import mindustry.ui.Styles;
 
@@ -27,7 +27,6 @@ public class PointerDraw{
 	
 	public static void update(){
 		cur = GII_Vars.currentUnit == null ? GII_Vars.currentBuilding : GII_Vars.currentUnit;
-		
 		if(cur != null){
 			if(cur instanceof Unit){
 				Unit unit = (Unit)cur;
@@ -95,44 +94,44 @@ public class PointerDraw{
 					table.actions(Actions.fadeIn(0.125f));
 				}
 			}
-// 			else{
-// 				Building unit = (Building)cur;
+			else{
+				Building unit = (Building)cur;
 				
-// 				if(cur != last){
-// 					Table table = new Table(Styles.black5){{
-// 						color.a = 0;
+				if(cur != last){
+					Table table = new Table(Styles.black5){{
+						color.a = 0;
 						
 						
-// 						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
+						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
 						
-// 						bar2.blinkable = true;
-// 						bar2.blinkColor = Pal.redderDust;
-// 						bar2.blinked = true;
+						bar2.blinkable = true;
+						bar2.blinkColor = Pal.redderDust;
+						bar2.blinked = true;
 						
-// 						add(bar2).grow();
+						add(bar2).grow();
 						
-// //						add(Iconc.defense + "Armor: " + unit.block.armor);
+//						add(Iconc.defense + "Armor: " + unit.block.armor);
 						
-// 						update(() -> {
-// 							Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
-// 							setPosition(pos.x, pos.y, Align.top);
-// 							setSize(Mathf.clamp(unit.hitSize() * 3.5f, 150f, 250f) * Vars.renderer.getDisplayScale(), 13 * Vars.renderer.getDisplayScale());
-// 							margin(2f * Vars.renderer.getDisplayScale());
+						update(() -> {
+							Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
+							setPosition(pos.x, pos.y, Align.top);
+							setSize(Mathf.clamp(unit.hitSize() * 3.5f, 150f, 250f) * Vars.renderer.getDisplayScale(), 13 * Vars.renderer.getDisplayScale());
+							margin(2f * Vars.renderer.getDisplayScale());
 							
-// 							if(unit != cur && !hasActions()){
-// 								actions(Actions.fadeOut(0.25f), Actions.remove());
-// 							}
-// 						});
+							if(unit != cur && !hasActions()){
+								actions(Actions.fadeOut(0.25f), Actions.remove());
+							}
+						});
 						
-// 						touchable = Touchable.disabled;
-// 					}};
+						touchable = Touchable.disabled;
+					}};
 					
-// 					Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
-// 					table.setPosition(pos.x, pos.y, Align.top);
-// 					GII_HUD.root.addChild(table);
-// 					table.actions(Actions.fadeIn(0.125f));
-// 				}
-// 			}
+					Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
+					table.setPosition(pos.x, pos.y, Align.top);
+					GII_HUD.root.addChild(table);
+					table.actions(Actions.fadeIn(0.125f));
+				}
+			}
 		}
 		
 		last = cur;
