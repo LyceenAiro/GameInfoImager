@@ -9,6 +9,7 @@ import arc.scene.actions.Actions;
 import arc.scene.event.Touchable;
 import arc.scene.ui.layout.Table;
 import arc.util.Align;
+import imager.GII_Plugin;
 import imager.content.NHPColor;
 import imager.expand.GII_EventListeners;
 import imager.expand.GII_HUD;
@@ -94,7 +95,7 @@ public class PointerDraw{
 					table.actions(Actions.fadeIn(0.125f));
 				}
 			}
-			else{
+			else if(Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true)){
 				Building unit = (Building)cur;
 				
 				if(cur != last){
@@ -150,11 +151,11 @@ public class PointerDraw{
 					}
 				}
 			}
-			// else{
-			// 	Building unit = (Building)cur;
-			// 	if(Vars.state.rules.fog && unit.inFogTo(Vars.player.team()))Draw.rect(unit.block.fullIcon, unit.x, unit.y, unit.block.rotate ? unit.rotation * 90 : 0);
-			// 	Drawf.square(unit.x, unit.y, (unit.block.size * Vars.tilesize) / (1.7f) + 1.5f, 45, unit.team.color);
-			// }
+			else if(Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true)){
+				Building unit = (Building)cur;
+				if(Vars.state.rules.fog && unit.inFogTo(Vars.player.team()))Draw.rect(unit.block.fullIcon, unit.x, unit.y, unit.block.rotate ? unit.rotation * 90 : 0);
+				Drawf.square(unit.x, unit.y, (unit.block.size * Vars.tilesize) / (1.7f) + 1.5f, 45, unit.team.color);
+			}
 		}
 	}
 }
