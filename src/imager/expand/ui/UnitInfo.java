@@ -120,16 +120,17 @@ public class UnitInfo extends Table{
 		GII_HUD.root.addChildAt(0, root);
 	}
 	
-	public synchronized static void update(){
+	public synchronized static void update(Unit unit){
 		if(Groups.unit.isEmpty())return;
-		Seq<Unit> tmpSeq = new Seq<>();
-		Groups.unit.copy(tmpSeq);
-		tmpSeq.sortComparing(Unit::id);
-		for(int i = tmpSeq.size - 1; i >= 0; i--){
-			Unit unit = tmpSeq.get(i);
-			if(unit.id == lastID)break;
-			create(unit);
-		}
+		// Seq<Unit> tmpSeq = new Seq<>();
+		// Groups.unit.copy(tmpSeq);
+		// tmpSeq.sortComparing(Unit::id);
+		// for(int i = tmpSeq.size - 1; i >= 0; i--){
+		// 	Unit unit = tmpSeq.get(i);
+		// 	if(unit.id == lastID)break;
+		// 	create(unit);
+		// }
+		create(unit);
 		
 		lastSize = Groups.unit.size();
 	}

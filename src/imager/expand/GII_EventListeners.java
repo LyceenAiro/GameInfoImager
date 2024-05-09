@@ -281,17 +281,15 @@ public class GII_EventListeners{
 		
 		Events.on(EventType.UnitCreateEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
-				units.clear();
 				units.add(e.unit);
-				UnitInfo.update();
+				UnitInfo.update(e.unit);
 			}
 		});
 
 		Events.on(EventType.UnitSpawnEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
-				units.clear();
 				units.add(e.unit);
-				UnitInfo.update();
+				UnitInfo.update(e.unit);
 			}
 		});
 		
