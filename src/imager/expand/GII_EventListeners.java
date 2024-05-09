@@ -197,7 +197,6 @@ public class GII_EventListeners{
 	public static final Boolf<Building> addBuilding = b -> b instanceof Turret.TurretBuild && ((Turret.TurretBuild)b).hasAmmo() && b.isValid() && b.block.size >= minBuildSize;
 	public static final Boolf<Unit> addUnit = u -> u.isValid() && u.hitSize() >= minUnitSize * Vars.tilesize;
 	
-	@SuppressWarnings("deprecation")
 	public static void load(){
 		signDrawer.add(new DrawPair<>(unit -> unit.type.health > 12000, unit -> drawFunc.get(T5_N, unit)));
 		signDrawer.add(new DrawPair<>(unit -> unit.type.health > 6000, unit -> drawFunc.get(T4, unit)));
