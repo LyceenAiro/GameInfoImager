@@ -283,6 +283,7 @@ public class GII_EventListeners{
 			if(e.unit != null && addUnit.get(e.unit)){
 				units.clear();
 				units.add(e.unit);
+				UnitInfo.update();
 			}
 		});
 
@@ -290,6 +291,7 @@ public class GII_EventListeners{
 			if(e.unit != null && addUnit.get(e.unit)){
 				units.clear();
 				units.add(e.unit);
+				UnitInfo.update();
 			}
 		});
 		
