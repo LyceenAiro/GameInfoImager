@@ -197,6 +197,7 @@ public class GII_EventListeners{
 	public static final Boolf<Building> addBuilding = b -> b instanceof Turret.TurretBuild && ((Turret.TurretBuild)b).hasAmmo() && b.isValid() && b.block.size >= minBuildSize;
 	public static final Boolf<Unit> addUnit = u -> u.isValid() && u.hitSize() >= minUnitSize * Vars.tilesize;
 	
+	@SuppressWarnings("deprecation")
 	public static void load(){
 		signDrawer.add(new DrawPair<>(unit -> unit.type.health > 12000, unit -> drawFunc.get(T5_N, unit)));
 		signDrawer.add(new DrawPair<>(unit -> unit.type.health > 6000, unit -> drawFunc.get(T4, unit)));
@@ -238,26 +239,26 @@ public class GII_EventListeners{
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
 			if(timer.get(12f)){
-				taskQueue.post(() -> {
-					synchronized(unitsUTD){
-						unitsUTD.clear();
-						Groups.unit.copy(unitsUTD).filter(addUnit);
-						units = new Seq<>(unitsUTD);
-					}
-				});
+				// taskQueue.post(() -> {
+				// 	synchronized(unitsUTD){
+				// 		unitsUTD.clear();
+				// 		Groups.unit.copy(unitsUTD).filter(addUnit);
+				// 		units = new Seq<>(unitsUTD);
+				// 	}
+				// });
 
 				UnitInfo.update();
 			}
 			
-			// if(timer.get(2, 12f)){
-			// 	taskQueue.post(() -> {
-			// 		synchronized(buildsUTD){
-			// 			buildsUTD.clear();
-			// 			Groups.build.copy(buildsUTD).filter(addBuilding);
-			// 			builds = new Seq<>(buildsUTD);
-			// 		}
-			// 	});
-			// }
+			if(timer.get(2, 12f)){
+				taskQueue.post(() -> {
+					synchronized(buildsUTD){
+						buildsUTD.clear();
+						Groups.build.copy(buildsUTD).filter(addBuilding);
+						builds = new Seq<>(buildsUTD);
+					}
+				});
+			}
 		});
 		
 		Events.on(EventType.TilePreChangeEvent.class, e -> {
