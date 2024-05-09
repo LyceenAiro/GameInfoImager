@@ -302,6 +302,7 @@ public class GII_EventListeners{
 
 		Events.on(EventType.UnitChangeEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
+				units.remove(e.unit);
 				units.add(e.unit);
 				UnitInfo.update(e.unit);
 			}
