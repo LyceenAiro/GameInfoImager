@@ -249,7 +249,7 @@ public class GII_EventListeners{
 				UnitInfo.update();
 			}
 			
-			if(timer.get(12f)){
+			if(timer.get(1, 30f)){
 				taskQueue.post(() -> {
 					synchronized(buildsUTD){
 						buildsUTD.clear();
