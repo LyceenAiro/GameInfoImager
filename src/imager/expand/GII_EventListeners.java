@@ -158,6 +158,7 @@ public class GII_EventListeners{
 	public static int lastID;
 	
 	public static Interval timer = new Interval(1);
+	public static Interval Buildtimer = new Interval(2);
 	
 	public static TaskQueue taskQueue = new TaskQueue();
 	public static Thread updateThread;
@@ -249,7 +250,7 @@ public class GII_EventListeners{
 				UnitInfo.update();
 			}
 			
-			if(timer.get(1, 12f)){
+			if(Buildtimer.get(2, 12f)){
 				taskQueue.post(() -> {
 					synchronized(buildsUTD){
 						buildsUTD.clear();
