@@ -267,11 +267,11 @@ public class GII_EventListeners{
 			}
 		});
 		
-		Events.on(EventType.TileChangeEvent.class, e -> {
-			if(e.tile.build != null && addBuilding.get(e.tile.build)){
-				builds.add(e.tile.build);
-			}
-		});
+		// Events.on(EventType.TileChangeEvent.class, e -> {
+		// 	if(e.tile.build != null && addBuilding.get(e.tile.build)){
+		// 		builds.add(e.tile.build);
+		// 	}
+		// });
 		
 		Events.on(EventType.UnitDestroyEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
