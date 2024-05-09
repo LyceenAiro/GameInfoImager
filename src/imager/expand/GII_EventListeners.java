@@ -157,7 +157,7 @@ public class GII_EventListeners{
 	
 	public static int lastID;
 	
-	public static Interval timer = new Interval();
+	public static Interval timer = new Interval(2);
 	
 	public static TaskQueue taskQueue = new TaskQueue();
 	public static Thread updateThread;
@@ -237,17 +237,17 @@ public class GII_EventListeners{
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
-			if(timer.get(12f)){
-				// taskQueue.post(() -> {
-				// 	synchronized(unitsUTD){
-				// 		unitsUTD.clear();
-				// 		Groups.unit.copy(unitsUTD).filter(addUnit);
-				// 		units = new Seq<>(unitsUTD);
-				// 	}
-				// });
+			// if(timer.get(12f)){
+			// 	// taskQueue.post(() -> {
+			// 	// 	synchronized(unitsUTD){
+			// 	// 		unitsUTD.clear();
+			// 	// 		Groups.unit.copy(unitsUTD).filter(addUnit);
+			// 	// 		units = new Seq<>(unitsUTD);
+			// 	// 	}
+			// 	// });
 
-				UnitInfo.update();
-			}
+			// 	UnitInfo.update();
+			// }
 			
 			if(timer.get(1, 30f)){
 				taskQueue.post(() -> {
@@ -273,10 +273,12 @@ public class GII_EventListeners{
 		
 		Events.on(EventType.UnitDestroyEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit))units.remove(e.unit);
+			UnitInfo.update();
 		});
 		
 		Events.on(EventType.UnitCreateEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit))units.add(e.unit);
+			UnitInfo.update();
 		});
 		
 		Events.run(EventType.Trigger.draw, () -> {
