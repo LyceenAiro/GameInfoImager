@@ -287,6 +287,12 @@ public class GII_EventListeners{
 			}
 		});
 
+		Events.on(EventType.UnitUnloadEvent.class, e -> {
+			if(e.unit != null && addUnit.get(e.unit)){
+				UnitInfo.update();
+			}
+		});
+
 		Events.on(EventType.UnitSpawnEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
 				UnitInfo.update();
