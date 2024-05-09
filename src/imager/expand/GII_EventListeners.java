@@ -237,27 +237,27 @@ public class GII_EventListeners{
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
-//			if(timer.get(12f)){
-//				taskQueue.post(() -> {
-//					synchronized(unitsUTD){
-//						unitsUTD.clear();
-//						Groups.unit.copy(unitsUTD).filter(addUnit);
-//						units = new Seq<>(unitsUTD);
-//					}
-//				});
-//
-//				UnitInfo.update();
-//			}
-			
-			if(timer.get(1, 30f)){
+			if(timer.get(12f)){
 				taskQueue.post(() -> {
-					synchronized(buildsUTD){
-						buildsUTD.clear();
-						Groups.build.copy(buildsUTD).filter(addBuilding);
-						builds = new Seq<>(buildsUTD);
+					synchronized(unitsUTD){
+						unitsUTD.clear();
+						Groups.unit.copy(unitsUTD).filter(addUnit);
+						units = new Seq<>(unitsUTD);
 					}
 				});
+
+				UnitInfo.update();
 			}
+			
+			// if(timer.get(1, 30f)){
+			// 	taskQueue.post(() -> {
+			// 		synchronized(buildsUTD){
+			// 			buildsUTD.clear();
+			// 			Groups.build.copy(buildsUTD).filter(addBuilding);
+			// 			builds = new Seq<>(buildsUTD);
+			// 		}
+			// 	});
+			// }
 		});
 		
 		Events.on(EventType.TilePreChangeEvent.class, e -> {
