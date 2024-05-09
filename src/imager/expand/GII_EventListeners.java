@@ -237,17 +237,17 @@ public class GII_EventListeners{
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
-			// if(timer.get(12f)){
-			// 	// taskQueue.post(() -> {
-			// 	// 	synchronized(unitsUTD){
-			// 	// 		unitsUTD.clear();
-			// 	// 		Groups.unit.copy(unitsUTD).filter(addUnit);
-			// 	// 		units = new Seq<>(unitsUTD);
-			// 	// 	}
-			// 	// });
+			if(timer.get(30f)){
+				// taskQueue.post(() -> {
+				// 	synchronized(unitsUTD){
+				// 		unitsUTD.clear();
+				// 		Groups.unit.copy(unitsUTD).filter(addUnit);
+				// 		units = new Seq<>(unitsUTD);
+				// 	}
+				// });
 
-			// 	UnitInfo.update();
-			// }
+				UnitInfo.update();
+			}
 			
 			if(timer.get(1, 30f)){
 				taskQueue.post(() -> {
@@ -264,14 +264,12 @@ public class GII_EventListeners{
 			if(e.tile.build != null && lastID != e.tile.build.id && addBuilding.get(e.tile.build)){
 				lastID = e.tile.build.id;
 				builds.remove(e.tile.build);
-				UnitInfo.update();
 			}
 		});
 		
 		Events.on(EventType.TileChangeEvent.class, e -> {
 			if(e.tile.build != null && addBuilding.get(e.tile.build)){
 				builds.add(e.tile.build);
-				UnitInfo.update();
 			}
 		});
 		

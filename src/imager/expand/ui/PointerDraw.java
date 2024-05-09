@@ -64,7 +64,8 @@ public class PointerDraw{
 						bar.blinked = true;
 						add(bar).grow().padBottom(2).row();
 						
-						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth() + "   " + Iconc.defense + " : " + unit.armor) : "Destroyed"), unit::healthf, () -> 1);
+						int Amrs = (int) unit.armor;
+						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth() + "   " + Iconc.defense + " : " + Amrs) : "Destroyed"), unit::healthf, () -> 1);
 						
 						bar2.blinkable = true;
 						bar2.blinkColor = Pal.redderDust;
