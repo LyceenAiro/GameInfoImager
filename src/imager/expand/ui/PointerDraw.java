@@ -64,7 +64,7 @@ public class PointerDraw{
 						bar.blinked = true;
 						add(bar).grow().padBottom(2).row();
 						
-						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth() + Iconc.defense + unit.armor) : "Destroyed"), unit::healthf, () -> 1);
+						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth() + "   " + Iconc.defense + " : " + unit.armor) : "Destroyed"), unit::healthf, () -> 1);
 						
 						bar2.blinkable = true;
 						bar2.blinkColor = Pal.redderDust;
@@ -103,7 +103,7 @@ public class PointerDraw{
 						color.a = 0;
 						
 						
-						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth() + Iconc.defense + unit.block.armor) : "Destroyed"), unit::healthf, () -> 1);
+						UnitInfo.UnitHealthBar bar2 = new UnitInfo.UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
 						
 						bar2.blinkable = true;
 						bar2.blinkColor = Pal.redderDust;

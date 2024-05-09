@@ -264,21 +264,29 @@ public class GII_EventListeners{
 			if(e.tile.build != null && lastID != e.tile.build.id && addBuilding.get(e.tile.build)){
 				lastID = e.tile.build.id;
 				builds.remove(e.tile.build);
+				UnitInfo.update();
 			}
 		});
 		
 		Events.on(EventType.TileChangeEvent.class, e -> {
-			if(e.tile.build != null && addBuilding.get(e.tile.build))builds.add(e.tile.build);
+			if(e.tile.build != null && addBuilding.get(e.tile.build)){
+				builds.add(e.tile.build);
+				UnitInfo.update();
+			}
 		});
 		
 		Events.on(EventType.UnitDestroyEvent.class, e -> {
-			if(e.unit != null && addUnit.get(e.unit))units.remove(e.unit);
-			UnitInfo.update();
+			if(e.unit != null && addUnit.get(e.unit)){
+				units.remove(e.unit);
+				UnitInfo.update();
+			}
 		});
 		
 		Events.on(EventType.UnitCreateEvent.class, e -> {
-			if(e.unit != null && addUnit.get(e.unit))units.add(e.unit);
-			UnitInfo.update();
+			if(e.unit != null && addUnit.get(e.unit)){
+				units.add(e.unit);
+				UnitInfo.update();
+			}
 		});
 		
 		Events.run(EventType.Trigger.draw, () -> {
