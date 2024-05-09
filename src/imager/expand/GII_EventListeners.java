@@ -157,7 +157,7 @@ public class GII_EventListeners{
 	
 	public static int lastID;
 	
-	public static Interval timer = new Interval(1);
+	public static Interval timer1 = new Interval(1);
 	
 	public static TaskQueue taskQueue = new TaskQueue();
 	public static Thread updateThread;
@@ -237,7 +237,7 @@ public class GII_EventListeners{
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
-			if(timer.get(1, 12f)){
+			if(timer1.get(1, 12f)){
 				taskQueue.post(() -> {
 					synchronized(unitsUTD){
 						unitsUTD.clear();
@@ -249,15 +249,15 @@ public class GII_EventListeners{
 				UnitInfo.update();
 			}
 			
-			if(timer.get(2, 12f)){
-				taskQueue.post(() -> {
-					synchronized(buildsUTD){
-						buildsUTD.clear();
-						Groups.build.copy(buildsUTD).filter(addBuilding);
-						builds = new Seq<>(buildsUTD);
-					}
-				});
-			}
+			// if(timer.get(2, 12f)){
+			// 	taskQueue.post(() -> {
+			// 		synchronized(buildsUTD){
+			// 			buildsUTD.clear();
+			// 			Groups.build.copy(buildsUTD).filter(addBuilding);
+			// 			builds = new Seq<>(buildsUTD);
+			// 		}
+			// 	});
+			// }
 		});
 		
 		Events.on(EventType.TilePreChangeEvent.class, e -> {
