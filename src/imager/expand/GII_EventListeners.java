@@ -237,7 +237,7 @@ public class GII_EventListeners{
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
-			if(timer.get(30f)){
+			if(timer.get(1, 30f)){
 				// taskQueue.post(() -> {
 				// 	synchronized(unitsUTD){
 				// 		unitsUTD.clear();
@@ -301,7 +301,7 @@ public class GII_EventListeners{
 				return viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2);
 			});
 			
-			// PointerDraw.draw();
+			PointerDraw.draw();
 			
 			if(Core.settings.getBool(GII_Plugin.SETTING_KEY, true)){
 				Draw.draw(Layer.space + 10.55f, () -> {
