@@ -131,7 +131,7 @@ public class PointerDraw{
 					Vec2 pos = Core.input.mouseScreen(unit.x, unit.y + unit.block.size * Vars.tilesize + 12);
 					table.setPosition(pos.x, pos.y, Align.top);
 					GII_HUD.root.addChild(table);
-					table.actions(Actions.fadeIn(0.8f));
+					table.actions(Actions.fadeIn(0.125f));
 				}
 			}
 		}
