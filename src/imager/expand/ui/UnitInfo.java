@@ -13,7 +13,7 @@ import arc.scene.event.Touchable;
 import arc.scene.ui.layout.Table;
 import arc.scene.ui.layout.WidgetGroup;
 import arc.struct.IntMap;
-import arc.struct.Seq;
+// import arc.struct.Seq;
 import arc.util.Tmp;
 import imager.GII_Plugin;
 import imager.expand.GII_EventListeners;

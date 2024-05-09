@@ -292,6 +292,20 @@ public class GII_EventListeners{
 				UnitInfo.update(e.unit);
 			}
 		});
+
+		Events.on(EventType.UnitUnloadEvent.class, e -> {
+			if(e.unit != null && addUnit.get(e.unit)){
+				units.add(e.unit);
+				UnitInfo.update(e.unit);
+			}
+		});
+
+		Events.on(EventType.UnitChangeEvent.class, e -> {
+			if(e.unit != null && addUnit.get(e.unit)){
+				units.add(e.unit);
+				UnitInfo.update(e.unit);
+			}
+		});
 		
 		Events.run(EventType.Trigger.draw, () -> {
 			float z = Draw.z();
