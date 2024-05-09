@@ -215,8 +215,8 @@ public class GII_EventListeners{
 			builds.clear();
 			units.clear();
 			
-			Groups.build.copy(builds).filter(addBuilding);
-			Groups.unit.copy(units).filter(addUnit);
+			Groups.build.copy(builds).retainAll(addBuilding);
+			Groups.unit.copy(units).retainAll(addUnit);
 			
 			start();
 			
@@ -253,7 +253,7 @@ public class GII_EventListeners{
 				taskQueue.post(() -> {
 					synchronized(buildsUTD){
 						buildsUTD.clear();
-						Groups.build.copy(buildsUTD).filter(addBuilding);
+						Groups.build.copy(buildsUTD).retainAll(addBuilding);
 						builds = new Seq<>(buildsUTD);
 					}
 				});
@@ -287,8 +287,8 @@ public class GII_EventListeners{
 			
 			Core.camera.bounds(viewport);
 			
-			Seq<Unit> us = units.copy().filter(draw -> viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2));
-			Seq<Building> bs = builds.copy().filter(entity -> {
+			Seq<Unit> us = units.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2));
+			Seq<Building> bs = builds.copy().retainAll(entity -> {
 				BaseTurret.BaseTurretBuild draw = (BaseTurret.BaseTurretBuild)entity;
 				return viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2);
 			});
@@ -324,7 +324,7 @@ public class GII_EventListeners{
 			Draw.blend();
 			
 			if(Core.settings.getBool(GII_Plugin.DRAW_UNIT_SIGN, true) && Vars.ui.hudfrag.shown){
-				Seq<Unit> us2 = us.copy().filter(draw -> viewport.overlaps(draw.x() - draw.hitSize(), draw.y() - draw.hitSize(), draw.hitSize() * 2, draw.hitSize() * 2));
+				Seq<Unit> us2 = us.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.hitSize(), draw.y() - draw.hitSize(), draw.hitSize() * 2, draw.hitSize() * 2));
 				
 				us2.each(unit -> {
 					Draw.z(Layer.light + 6);
