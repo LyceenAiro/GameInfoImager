@@ -237,17 +237,17 @@ public class GII_EventListeners{
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
-//			if(timer.get(12f)){
-//				taskQueue.post(() -> {
-//					synchronized(unitsUTD){
-//						unitsUTD.clear();
-//						Groups.unit.copy(unitsUTD).filter(addUnit);
-//						units = new Seq<>(unitsUTD);
-//					}
-//				});
-//
-//				UnitInfo.update();
-//			}
+			if(timer.get(1, 12f)){
+				taskQueue.post(() -> {
+					synchronized(unitsUTD){
+						unitsUTD.clear();
+						Groups.unit.copy(unitsUTD).filter(addUnit);
+						units = new Seq<>(unitsUTD);
+					}
+				});
+
+				UnitInfo.update();
+			}
 			
 			if(timer.get(1, 12f)){
 				taskQueue.post(() -> {
