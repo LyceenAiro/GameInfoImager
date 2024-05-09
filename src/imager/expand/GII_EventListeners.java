@@ -280,22 +280,16 @@ public class GII_EventListeners{
 			}
 		});
 		
-		Events.on(EventType.UnitCreateEvent.class, e -> {
-			if(e.unit != null && addUnit.get(e.unit)){
-				units.add(e.unit);
-				UnitInfo.update();
-			}
-		});
-
-		// Events.on(EventType.UnitUnloadEvent.class, e -> {
+		// Events.on(EventType.UnitCreateEvent.class, e -> {
 		// 	if(e.unit != null && addUnit.get(e.unit)){
+		// 		units.add(e.unit);
 		// 		UnitInfo.update();
 		// 	}
 		// });
 
 		Events.on(EventType.UnitSpawnEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
-				// units.add(e.unit);
+				units.add(e.unit);
 				UnitInfo.update();
 			}
 		});
