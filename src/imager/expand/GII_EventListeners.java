@@ -158,7 +158,6 @@ public class GII_EventListeners{
 	public static int lastID;
 	
 	public static Interval timer = new Interval(1);
-	public static Interval Buildtimer = new Interval(2);
 	
 	public static TaskQueue taskQueue = new TaskQueue();
 	public static Thread updateThread;
@@ -238,7 +237,7 @@ public class GII_EventListeners{
 			
 			GII_Plugin.showHealthBar = Core.settings.getBool(GII_Plugin.SHOW_UNIT_HEALTH_BAR, true);
 			
-			if(timer.get(1, 0.1f)){
+			if(timer.get(1, 12f)){
 				taskQueue.post(() -> {
 					synchronized(unitsUTD){
 						unitsUTD.clear();
@@ -250,7 +249,7 @@ public class GII_EventListeners{
 				UnitInfo.update();
 			}
 			
-			if(Buildtimer.get(2, 0.1f)){
+			if(timer.get(2, 12f)){
 				taskQueue.post(() -> {
 					synchronized(buildsUTD){
 						buildsUTD.clear();
