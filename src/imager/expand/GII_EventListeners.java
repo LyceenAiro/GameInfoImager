@@ -301,7 +301,7 @@ public class GII_EventListeners{
 				return viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2);
 			});
 			
-			PointerDraw.draw();
+			// PointerDraw.draw();
 			
 			if(Core.settings.getBool(GII_Plugin.SETTING_KEY, true)){
 				Draw.draw(Layer.space + 10.55f, () -> {
