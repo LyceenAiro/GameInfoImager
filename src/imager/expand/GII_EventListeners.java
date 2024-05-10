@@ -312,11 +312,11 @@ public class GII_EventListeners{
 			float z = Draw.z();
 			
 			minBuildSize = Core.settings.getInt(GII_Plugin.BUILDING_SIZE_FILTER, 1);
-			// minUnitSize = Core.settings.getInt(GII_Plugin.UNIT_SIZE_FILTER, 0);
+			minUnitSize = Core.settings.getInt(GII_Plugin.UNIT_SIZE_FILTER, 0);
 			
 			Core.camera.bounds(viewport);
 			
-			// Seq<Unit> us = units.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2));
+			Seq<Unit> us = units.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2));
 			Seq<Building> bs = builds.copy().retainAll(entity -> {
 				BaseTurret.BaseTurretBuild draw = (BaseTurret.BaseTurretBuild)entity;
 				return viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2);
@@ -328,7 +328,7 @@ public class GII_EventListeners{
 				Draw.draw(Layer.space + 10.55f, () -> {
 					Vars.renderer.effectBuffer.begin(Color.clear);
 					
-					// us.each(entity -> drawer.get(entity, entity.range(), entity.hitSize()));
+					us.each(entity -> drawer.get(entity, entity.range(), entity.hitSize()));
 					bs.each(entity -> drawer.get(entity, ((BaseTurret.BaseTurretBuild)entity).range(), entity.hitSize()));
 					
 					Vars.renderer.effectBuffer.end();
@@ -340,7 +340,7 @@ public class GII_EventListeners{
 					Vars.renderer.effectBuffer.begin(Color.clear);
 					
 					Lines.stroke(2f);
-					// us.each(entity -> drawer2.get(entity, entity.range(), entity.hitSize()));
+					us.each(entity -> drawer2.get(entity, entity.range(), entity.hitSize()));
 					bs.each(entity -> drawer2.get(entity, ((BaseTurret.BaseTurretBuild)entity).range(), entity.hitSize()));
 					
 					Vars.renderer.effectBuffer.end();
@@ -352,20 +352,20 @@ public class GII_EventListeners{
 			
 			Draw.blend();
 			
-			// if(Core.settings.getBool(GII_Plugin.DRAW_UNIT_SIGN, true) && Vars.ui.hudfrag.shown){
-			// 	Seq<Unit> us2 = us.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.hitSize(), draw.y() - draw.hitSize(), draw.hitSize() * 2, draw.hitSize() * 2));
+			if(Core.settings.getBool(GII_Plugin.DRAW_UNIT_SIGN, true) && Vars.ui.hudfrag.shown){
+				Seq<Unit> us2 = us.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.hitSize(), draw.y() - draw.hitSize(), draw.hitSize() * 2, draw.hitSize() * 2));
 				
-			// 	us2.each(unit -> {
-			// 		Draw.z(Layer.light + 6);
-			// 		for(DrawPair<Unit> drawer : signDrawer){
-			// 			if(drawer.bool.get(unit)){
-			// 				drawer.drawer.get(unit);
-			// 				Draw.reset();
-			// 				break;
-			// 			}
-			// 		}
-			// 	});
-			// }
+				us2.each(unit -> {
+					Draw.z(Layer.light + 6);
+					for(DrawPair<Unit> drawer : signDrawer){
+						if(drawer.bool.get(unit)){
+							drawer.drawer.get(unit);
+							Draw.reset();
+							break;
+						}
+					}
+				});
+			}
 			
 			Draw.reset();
 			Draw.z(z);
