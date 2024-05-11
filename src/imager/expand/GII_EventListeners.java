@@ -277,9 +277,9 @@ public class GII_EventListeners{
 		});
 		
 		Events.on(EventType.UnitDestroyEvent.class, e -> {
-			if(e.unit != null && addUnit.get(e.unit)){
+			// if(e.unit != null && addUnit.get(e.unit)){
 				units.remove(e.unit);
-			}
+			// }
 		});
 		
 		Events.on(EventType.UnitCreateEvent.class, e -> {
