@@ -58,6 +58,10 @@ public class GII_Plugin extends Plugin{
 				
 				if(drawAlly && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
 				else NHPColor.ally2.set(Color.clear);
+
+				if(drawHighlight){
+					drawHighlight = false;
+				}
 			});
 
 			Vars.ui.settings.graphics.checkPref(SHOW_OTHER_TEAM, true, c -> {
@@ -68,6 +72,10 @@ public class GII_Plugin extends Plugin{
 				
 				if(drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
 				else NHPColor.ally2.set(Color.clear);
+
+				if(drawHighlight){
+					drawHighlight = false;
+				}
 			});
 
 			Vars.ui.settings.graphics.checkPref(SHOW_HIGHLIGHT, true, c -> {
