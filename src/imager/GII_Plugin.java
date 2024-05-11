@@ -103,8 +103,8 @@ public class GII_Plugin extends Plugin{
 		if(drawAlly)NHPColor.ally.set(NHPColor.ally_copier);
 		else NHPColor.ally.set(Color.clear);
 
-		// if(drawOtherTeam)NHPColor.ally.set(NHPColor.ally_copier);
-		// else NHPColor.ally.set(Color.clear);
+		if(drawOtherTeam)NHPColor.ally.set(NHPColor.ally_copier);
+		else NHPColor.ally.set(Color.clear);
 		
 		if(drawHighlight)NHPColor.hostile2.set(NHPColor.hostile2_copier);
 		else NHPColor.hostile2.set(Color.clear);
@@ -112,7 +112,7 @@ public class GII_Plugin extends Plugin{
 		if(drawAlly && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
 		else NHPColor.ally2.set(Color.clear);
 
-		// if(drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
-		// else NHPColor.ally2.set(Color.clear);
+		if(drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
+		else NHPColor.ally2.set(Color.clear);
 	}
 }
