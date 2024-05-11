@@ -36,7 +36,7 @@ public class GII_Plugin extends Plugin{
 	public static int buildingShowMinSize = 1;
 	public static float unitShowMinSize = 1;
 	
-	public static boolean drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBulidHealth, drawHighlightset;
+	public static boolean drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBulidHealth;
 	
 	public GII_Plugin(){
 		Events.on(ClientLoadEvent.class, e -> {
@@ -59,11 +59,10 @@ public class GII_Plugin extends Plugin{
 				if(drawAlly && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
 				else NHPColor.ally2.set(Color.clear);
 
-				if(!drawHighlightset)drawHighlight = false;
 			});
 
 			Vars.ui.settings.graphics.checkPref(SHOW_OTHER_TEAM, true, c -> {
-				drawHighlight = c;
+				drawOtherTeam = c;
 				
 				if(drawOtherTeam)NHPColor.hostile2.set(NHPColor.hostile2_copier);
 				else NHPColor.hostile2.set(Color.clear);
@@ -71,7 +70,6 @@ public class GII_Plugin extends Plugin{
 				if(drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
 				else NHPColor.ally2.set(Color.clear);
 
-				if(!drawHighlightset)drawHighlight = false;
 			});
 
 			Vars.ui.settings.graphics.checkPref(SHOW_HIGHLIGHT, true, c -> {
@@ -103,7 +101,6 @@ public class GII_Plugin extends Plugin{
 		drawAlly = Core.settings.getBool(SHOW_ALLY, true);
 		drawOtherTeam = Core.settings.getBool(SHOW_OTHER_TEAM, true);
 		drawHighlight = Core.settings.getBool(SHOW_HIGHLIGHT, true);
-		drawHighlightset = drawHighlight;
 		
 		if(drawAlly || drawOtherTeam)NHPColor.ally.set(NHPColor.ally_copier);
 		else NHPColor.ally.set(Color.clear);
