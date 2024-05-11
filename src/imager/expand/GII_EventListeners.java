@@ -45,9 +45,9 @@ public class GII_EventListeners{
 		boolean ally = entity.team() == Vars.player.team();
 		if(ally && !GII_Plugin.drawAlly)return;
 		else if(!ally && !GII_Plugin.drawOtherTeam)return;
-		Color c = ally ? NHPColor.ally : NHPColor.hostile;
+		// Color c = ally ? NHPColor.ally : NHPColor.hostile;
 		
-		Fill.light(entity.x(), entity.y(), Lines.circleVertices(range), range, c, c);
+		// Fill.light(entity.x(), entity.y(), Lines.circleVertices(range), range, c, c);
 	};
 	
 	public static final Cons3<Teamc, Float, Float> drawer2 = (entity, range, size) -> {
@@ -56,13 +56,13 @@ public class GII_EventListeners{
 		if(ally && !GII_Plugin.drawAlly)return;
 		else if(!ally && !GII_Plugin.drawOtherTeam)return;
 
-		Color c = ally ? NHPColor.ally2 : NHPColor.hostile2;
+		// Color c = ally ? NHPColor.ally2 : NHPColor.hostile2;
 		
-		Draw.color(c);
+		// Draw.color(c);
 		
-		Lines.lineAngle(entity.x(), entity.y(), 45, range);
-		Lines.circle(entity.x(), entity.y(), range);
-		Fill.circle(entity.x(), entity.y(), Lines.getStroke() * 1.3f);
+		// Lines.lineAngle(entity.x(), entity.y(), 45, range);
+		// Lines.circle(entity.x(), entity.y(), range);
+		// Fill.circle(entity.x(), entity.y(), Lines.getStroke() * 1.3f);
 	};
 	
 	public static class DrawPair<T>{

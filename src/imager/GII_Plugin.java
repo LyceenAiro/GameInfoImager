@@ -78,7 +78,7 @@ public class GII_Plugin extends Plugin{
 				if(drawHighlight)NHPColor.hostile2.set(NHPColor.hostile2_copier);
 				else NHPColor.hostile2.set(Color.clear);
 				
-				if(drawAlly && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
+				if(drawAlly && drawHighlight || drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
 				else NHPColor.ally2.set(Color.clear);
 			});
 			
