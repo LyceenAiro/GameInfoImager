@@ -25,3 +25,4 @@ jobs:
       with:
         name: ${{ github.event.repository.name }}-${{ github.event.head_commit.message }}
         path: build/libs/${{ github.event.repository.name }}-${{ github.event.head_commit.message }}.jar
+        run: ls -R build/libs
