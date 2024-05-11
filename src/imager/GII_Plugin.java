@@ -63,7 +63,7 @@ public class GII_Plugin extends Plugin{
 			Vars.ui.settings.graphics.checkPref(SHOW_OTHER_TEAM, true, c -> {
 				drawHighlight = c;
 				
-				if(drawHighlight)NHPColor.hostile2.set(NHPColor.hostile2_copier);
+				if(drawOtherTeam)NHPColor.hostile2.set(NHPColor.hostile2_copier);
 				else NHPColor.hostile2.set(Color.clear);
 				
 				if(drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
