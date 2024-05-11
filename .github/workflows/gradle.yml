@@ -24,6 +24,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ github.event.repository.name }}-${{ github.event.head_commit.message }}
-        path: build/libs/${{ github.event.repository.name }}-${{ github.event.head_commit.message }}.jar
-    - name: TestFileName
-      run: ls -R build/libs
+        path: build/libs/${{ github.event.repository.name }}.jar
