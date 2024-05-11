@@ -44,6 +44,7 @@ public class GII_EventListeners{
 		if(entity.team() == Team.derelict)return;
 		boolean ally = entity.team() == Vars.player.team();
 		if(ally && !GII_Plugin.drawAlly)return;
+		else if(!ally && !GII_Plugin.drawOtherTeam)return;
 		Color c = ally ? NHPColor.ally : NHPColor.hostile;
 		
 		Fill.light(entity.x(), entity.y(), Lines.circleVertices(range), range, c, c);
@@ -53,6 +54,8 @@ public class GII_EventListeners{
 		if(entity.team() == Team.derelict)return;
 		boolean ally = entity.team() == Vars.player.team();
 		if(ally && !GII_Plugin.drawAlly)return;
+		else if(!ally && !GII_Plugin.drawOtherTeam)return;
+
 		Color c = ally ? NHPColor.ally2 : NHPColor.hostile2;
 		
 		Draw.color(c);
