@@ -100,19 +100,13 @@ public class GII_Plugin extends Plugin{
 		drawOtherTeam = Core.settings.getBool(SHOW_OTHER_TEAM, true);
 		drawHighlight = Core.settings.getBool(SHOW_HIGHLIGHT, true);
 		
-		if(drawAlly)NHPColor.ally.set(NHPColor.ally_copier);
-		else NHPColor.ally.set(Color.clear);
-
-		if(drawOtherTeam)NHPColor.ally.set(NHPColor.ally_copier);
+		if(drawAlly || drawOtherTeam)NHPColor.ally.set(NHPColor.ally_copier);
 		else NHPColor.ally.set(Color.clear);
 		
 		if(drawHighlight)NHPColor.hostile2.set(NHPColor.hostile2_copier);
 		else NHPColor.hostile2.set(Color.clear);
-		
-		if(drawAlly && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
-		else NHPColor.ally2.set(Color.clear);
 
-		if(drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
+		if(drawAlly && drawHighlight || drawOtherTeam && drawHighlight)NHPColor.ally2.set(NHPColor.ally2_copier);
 		else NHPColor.ally2.set(Color.clear);
 	}
 }
