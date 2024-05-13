@@ -48,7 +48,10 @@ public class UnitInfo extends Table{
 
 	public static Table healthTable(Unit unit){
 		return new Table(Styles.black3){{
-			UnitHealthBar bar = new UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), 100000)
+			int ms = 100;
+			if(unit.shield() > 0) ms = (int) unit.shield();
+			final int maxshield = ms;
+			UnitHealthBar bar = new UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield)
 			);
 			bar.blinkable = true;
 			bar.rootColor = Color.royal;
