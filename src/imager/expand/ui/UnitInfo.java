@@ -156,7 +156,8 @@ public class UnitInfo extends Table{
 				margin(1.25f * Vars.renderer.getDisplayScale());
 
 				if(build.isValid()){
-					lastPosition.set(build).add(build.hitSize(), (build.hitSize() / 2));
+					// lastPosition.set(build).add(build.hitSize(), (build.hitSize() / 2));
+					lastPosition.set(build).add(0, (build.hitSize() / 2));
 					lastSize = build.hitSize();
 				}else if(!fade){
 					fade = true;
