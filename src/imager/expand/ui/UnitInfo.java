@@ -155,13 +155,14 @@ public class UnitInfo extends Table{
 			public void act(float delta){
 				margin(1.25f * Vars.renderer.getDisplayScale());
 
-				// if(build.isValid() && build.health() < build.maxHealth()){
-				if(build.isValid()){
+				if(build.isValid() && build.health() < build.maxHealth()){
+				// if(build.isValid()){
 					lastPosition.set(build).add(-build.hitSize() / 2, (build.hitSize() / 2));
 					lastSize = build.hitSize();
 				}else if(!fade){
 					fade = true;
 					actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
+					// builds.remove(build);
 				}
 				
 				setSize(lastSize * Vars.renderer.getDisplayScale(), 7f * Vars.renderer.getDisplayScale());

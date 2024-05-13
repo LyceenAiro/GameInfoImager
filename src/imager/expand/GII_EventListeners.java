@@ -283,7 +283,7 @@ public class GII_EventListeners{
 				buildH.add(e.build);
 				UnitInfo.bsupdate(e.build);
 			}else if(e.build.health() == e.build.maxHealth()){
-				builds.remove(e.build);
+				buildH.remove(e.build);
 			}
 		});
 		
