@@ -31,17 +31,19 @@ public class GII_Plugin extends Plugin{
 	public static final String SHOW_WAVE_PER_LINE = "nh.ui.wave.unit-per-line";
 	
 	public static final String SHOW_UNIT_HEALTH_BAR = "nh.ui.wave.unit-health-bar";
+	public static final String SHOW_BUILD_BAR = "nh.ui.wave.build-bar";
 	public static final String SHOW_BUILD_HEALTH_BAR = "nh.ui.wave.build-health-bar";
 	
 	public static int buildingShowMinSize = 1;
 	public static float unitShowMinSize = 1;
 	
-	public static boolean drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBulidHealth;
+	public static boolean drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBuildBar, showBulidHealth;
 	
 	public GII_Plugin(){
 		Events.on(ClientLoadEvent.class, e -> {
 		
 			Vars.ui.settings.game.checkPref(SHOW_UNIT_HEALTH_BAR, true);
+			Vars.ui.settings.game.checkPref(SHOW_BUILD_BAR, true);
 			Vars.ui.settings.game.checkPref(SHOW_BUILD_HEALTH_BAR, true);
 			Vars.ui.settings.game.checkPref(SHOW_WAVE_INFO, true);
 			Vars.ui.settings.game.checkPref(SHOW_WAVE_DETAILS, true);
@@ -98,6 +100,7 @@ public class GII_Plugin extends Plugin{
 		
 		showBulidHealth = Core.settings.getBool(SHOW_BUILD_HEALTH_BAR, true);
 		showHealthBar = Core.settings.getBool(SHOW_UNIT_HEALTH_BAR, true);
+		showBuildBar = Core.settings.getBool(SHOW_BUILD_BAR, true);
 		drawAlly = Core.settings.getBool(SHOW_ALLY, true);
 		drawOtherTeam = Core.settings.getBool(SHOW_OTHER_TEAM, true);
 		drawHighlight = Core.settings.getBool(SHOW_HIGHLIGHT, true);

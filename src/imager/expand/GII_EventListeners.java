@@ -279,7 +279,7 @@ public class GII_EventListeners{
 		
 		// 建筑受到伤害时
 		Events.on(EventType.BuildDamageEvent.class, e -> {
-			if(!buildH.contains(e.build)){
+			if(GII_Plugin.showBuildBar && !buildH.contains(e.build)){
 				buildH.add(e.build);
 				UnitInfo.bsupdate(e.build);
 			}
