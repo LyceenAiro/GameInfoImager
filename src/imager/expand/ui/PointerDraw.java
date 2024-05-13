@@ -56,7 +56,10 @@ public class PointerDraw{
 							add(barArc).grow().padBottom(2).row();
 						}
 						
-						UnitInfo.UnitHealthBar bar = new UnitInfo.UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), 100000));
+						int ms = 100;
+						if(unit.shield() > 0) ms = (int) unit.shield();
+						final int maxshield = ms;
+						UnitInfo.UnitHealthBar bar = new UnitInfo.UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield));
 						
 						bar.blinkable = true;
 						bar.rootColor = Color.royal;
