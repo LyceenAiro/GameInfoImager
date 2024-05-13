@@ -224,7 +224,7 @@ public class UnitInfo extends Table{
 	}
 	
 	public static void create2(Building build){
-		if(!GII_EventListeners.addBuilding.get(build))return;
+		// if(!GII_EventListeners.addBuilding.get(build))return;
 		
 		Table info = healthTable(build);
 		
