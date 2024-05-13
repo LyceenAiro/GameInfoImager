@@ -151,6 +151,7 @@ public class GII_EventListeners{
 	}
 	
 	public static Seq<Building> builds = new Seq<>();
+	public static Seq<Building> buildH = new Seq<>();
 	public static Seq<Unit> units = new Seq<>();
 	public static final Seq<Building> buildsUTD = new Seq<>();
 	public static final Seq<Unit> unitsUTD = new Seq<>();
@@ -198,7 +199,6 @@ public class GII_EventListeners{
 	}
 	
 	public static final Boolf<Building> addBuilding = b -> b instanceof Turret.TurretBuild && ((Turret.TurretBuild)b).hasAmmo() && b.isValid() && b.block.size >= minBuildSize;
-	public static final Boolf<Building> addBuildingH = b -> b.isValid();
 	public static final Boolf<Unit> addUnit = u -> u.isValid() && u.hitSize() >= minUnitSize * Vars.tilesize;
 	
 	public static void load(){
@@ -279,8 +279,8 @@ public class GII_EventListeners{
 		
 		// 建筑受到伤害时
 		Events.on(EventType.BuildDamageEvent.class, e -> {
-			if(!builds.contains(e.build)){
-				builds.add(e.build);
+			if(!buildH.contains(e.build)){
+				buildH.add(e.build);
 				UnitInfo.bsupdate(e.build);
 			}
 		});
