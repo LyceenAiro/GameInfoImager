@@ -282,8 +282,6 @@ public class GII_EventListeners{
 			if(!buildH.contains(e.build)){
 				buildH.add(e.build);
 				UnitInfo.bsupdate(e.build);
-			}else if(e.build.health() == e.build.maxHealth()){
-				buildH.remove(e.build);
 			}
 		});
 		

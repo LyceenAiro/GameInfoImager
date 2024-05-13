@@ -162,7 +162,7 @@ public class UnitInfo extends Table{
 				}else if(!fade){
 					fade = true;
 					actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
-					// builds.remove(build);
+					GII_EventListeners.buildH.remove(build);
 				}
 				
 				setSize(lastSize * Vars.renderer.getDisplayScale(), 7f * Vars.renderer.getDisplayScale());
