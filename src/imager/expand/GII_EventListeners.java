@@ -284,7 +284,7 @@ public class GII_EventListeners{
 		
 		// 建筑被摧毁
 		Events.on(EventType.BlockDestroyEvent.class, e -> {
-			
+			builds.remove(e.tile.build);
 		});
 
 		// 单位被击毁

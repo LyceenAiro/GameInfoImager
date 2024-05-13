@@ -152,13 +152,15 @@ public class UnitInfo extends Table{
 			public void act(float delta){
 				margin(1.25f * Vars.renderer.getDisplayScale());
 
-				// if(build.isValid()){
-				// 	lastPosition.set(unit).add(-unit.hitSize, unit.hitSize);
-				// 	lastSize = unit.hitSize;
-				// }else if(!fade){
-				// 	fade = true;
-				// 	actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
-				// }
+				if(build.isValid()){
+					// lastPosition.set(build).add(-build.block.hitSize, build.block.hitSize);
+					// lastSize = build.hitSize;
+					lastPosition.set(build).add(-10, 10);
+					lastSize = 20;
+				}else if(!fade){
+					fade = true;
+					actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
+				}
 				
 				setSize(lastSize * 2f * Vars.renderer.getDisplayScale(), 14f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
