@@ -19,6 +19,7 @@ import imager.GII_Plugin;
 import imager.expand.GII_EventListeners;
 import imager.expand.GII_HUD;
 import mindustry.Vars;
+import mindustry.gen.Building;
 import mindustry.gen.Groups;
 import mindustry.gen.Iconc;
 import mindustry.gen.Unit;
@@ -112,6 +113,66 @@ public class UnitInfo extends Table{
 			}
 		};
 	}
+
+	public static Table healthTable(Building build){
+		return new Table(Styles.black3){{
+			UnitHealthBar bar = new UnitHealthBar(() -> build.team.color, () -> Iconc.add + " : " + (build.health() > 0 ? ((int)build.health() + " / " + (int)build.maxHealth()) : "Destroyed"), build::healthf, () -> 1);
+			
+			bar.blinkable = true;
+			bar.blinkColor = Pal.redderDust;
+			bar.blinked = true;
+			
+			add(bar).grow();
+			
+			touchable = Touchable.enabled;
+			
+			hovered(() -> {
+				toFront();
+				setBackground(Styles.black8);
+			});
+			
+			exited(() -> {
+				setBackground(Styles.black3);
+			});
+			
+			visible(() -> GII_Plugin.showHealthBar);
+		}
+			final Vec2 lastPosition = new Vec2();
+			// float lastSize = build.hitSize;
+			boolean shown = false;
+			boolean fade = false;
+			
+			@Override
+			public Element hit(float x, float y, boolean touchable){
+				if(!shown)return null;
+				return super.hit(x, y, touchable);
+			}
+			
+			@Override
+			public void act(float delta){
+				margin(1.25f * Vars.renderer.getDisplayScale());
+
+				// if(build.isValid()){
+				// 	lastPosition.set(unit).add(-unit.hitSize, unit.hitSize);
+				// 	lastSize = unit.hitSize;
+				// }else if(!fade){
+				// 	fade = true;
+				// 	actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
+				// }
+				
+				setSize(lastSize * 2f * Vars.renderer.getDisplayScale(), 14f * Vars.renderer.getDisplayScale());
+				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
+				setPosition(Tmp.v4.x, Tmp.v4.y);
+				
+				super.act(delta);
+			}
+			
+			@Override
+			public void draw(){
+				if(fade || (shown = Mathf.dst2(Core.graphics.getWidth(), Core.graphics.getHeight()) > Mathf.dst2(Core.graphics.getWidth() / 2f, Core.graphics.getHeight() / 2f, x + width / 2f, y + height / 2f))) super.draw();
+			}
+		};
+	}
 	
 	public static void init(){
 		added.clear();
@@ -134,6 +195,14 @@ public class UnitInfo extends Table{
 		
 		lastSize = Groups.unit.size();
 	}
+
+	public synchronized static void bsupdate(Building build){
+		if(Groups.build.isEmpty())return;
+		create2(build);
+
+		lastSize = Groups.build.size();
+	}
+
 	
 	public static void addBars(){
 		init();
@@ -151,6 +220,16 @@ public class UnitInfo extends Table{
 		root.addChild(info);
 	}
 	
+	public static void create2(Building build){
+		if(!GII_EventListeners.addBuilding.get(build))return;
+		
+		Table info = healthTable(build);
+		
+		added.put(build.id, info);
+		lastID = build.id;
+		root.addChild(info);
+	}
+
 	public static class UnitHealthBar extends DelaySlideBar{
 		public UnitHealthBar(Prov<Color> colorReal, Prov<CharSequence> info, Floatp valueGetter, Floatp maxValue){
 			super(colorReal, info, valueGetter, maxValue);
@@ -161,5 +240,18 @@ public class UnitInfo extends Table{
 		public UnitHealthBar(Unit unit){
 			this(() -> unit.team.color, () -> (int)unit.health() + " / " + (int)unit.maxHealth(), unit::healthf, () -> 1);
 		}
+		public UnitHealthBar(Building build){
+			this(() -> build.team.color, () -> (int)build.health() + " / " + (int)build.maxHealth(), build::healthf, () -> 1);
+		}
 	}
+
+	public static void update2(Building build) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'update2'");
+	}
+
+    public static void bupdate(Building build) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'bupdate'");
+    }
 }

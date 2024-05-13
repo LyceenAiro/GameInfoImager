@@ -276,12 +276,25 @@ public class GII_EventListeners{
 			}
 		});
 		
+		// 建筑受到伤害时
+		Events.on(EventType.BuildDamageEvent.class, e -> {
+			builds.add(e.build);
+			UnitInfo.bsupdate(e.build);
+		});
+		
+		// 建筑被摧毁
+		Events.on(EventType.BlockDestroyEvent.class, e -> {
+			
+		});
+
+		// 单位被击毁
 		Events.on(EventType.UnitDestroyEvent.class, e -> {
 			// if(e.unit != null && addUnit.get(e.unit)){
 				units.remove(e.unit);
 			// }
 		});
 		
+		// 单位被创建
 		Events.on(EventType.UnitCreateEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
 				units.add(e.unit);
@@ -289,6 +302,7 @@ public class GII_EventListeners{
 			}
 		});
 
+		// 单位在出生点生成
 		Events.on(EventType.UnitSpawnEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
 				units.add(e.unit);
@@ -296,6 +310,7 @@ public class GII_EventListeners{
 			}
 		});
 
+		// 单位被作为负荷提走
 		Events.on(EventType.UnitUnloadEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
 				units.add(e.unit);
@@ -303,9 +318,10 @@ public class GII_EventListeners{
 			}
 		});
 
+		// 单位状态改变
 		Events.on(EventType.UnitChangeEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
-				units.remove(e.unit);
+				// units.remove(e.unit);
 				units.add(e.unit);
 				UnitInfo.update(e.unit);
 			}
