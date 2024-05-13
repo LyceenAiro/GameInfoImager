@@ -305,7 +305,7 @@ public class GII_EventListeners{
 		// 单位在出生点生成
 		Events.on(EventType.UnitSpawnEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
-				units.add(e.unit);
+				// units.add(e.unit);
 				UnitInfo.update(e.unit);
 			}
 		});

@@ -138,7 +138,7 @@ public class UnitInfo extends Table{
 			visible(() -> GII_Plugin.showHealthBar);
 		}
 			final Vec2 lastPosition = new Vec2();
-			// float lastSize = build.hitSize;
+			float lastSize = build.hitSize();
 			boolean shown = false;
 			boolean fade = false;
 			
@@ -153,10 +153,8 @@ public class UnitInfo extends Table{
 				margin(1.25f * Vars.renderer.getDisplayScale());
 
 				if(build.isValid()){
-					// lastPosition.set(build).add(-build.block.hitSize, build.block.hitSize);
-					// lastSize = build.hitSize;
-					lastPosition.set(build).add(-10, 10);
-					lastSize = 20;
+					lastPosition.set(build).add(-build.hitSize(), build.hitSize());
+					lastSize = build.hitSize();
 				}else if(!fade){
 					fade = true;
 					actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
