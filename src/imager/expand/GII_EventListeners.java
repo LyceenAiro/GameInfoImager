@@ -278,8 +278,10 @@ public class GII_EventListeners{
 		
 		// 建筑受到伤害时
 		Events.on(EventType.BuildDamageEvent.class, e -> {
+			if(e.build != null && addBuilding.get(e.build)){
 			builds.add(e.build);
 			UnitInfo.bsupdate(e.build);
+			}
 		});
 		
 		// 建筑被摧毁
