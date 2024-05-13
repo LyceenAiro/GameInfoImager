@@ -198,6 +198,7 @@ public class GII_EventListeners{
 	}
 	
 	public static final Boolf<Building> addBuilding = b -> b instanceof Turret.TurretBuild && ((Turret.TurretBuild)b).hasAmmo() && b.isValid() && b.block.size >= minBuildSize;
+	public static final Boolf<Building> addBuildingH = b -> b.isValid();
 	public static final Boolf<Unit> addUnit = u -> u.isValid() && u.hitSize() >= minUnitSize * Vars.tilesize;
 	
 	public static void load(){
@@ -278,7 +279,7 @@ public class GII_EventListeners{
 		
 		// 建筑受到伤害时
 		Events.on(EventType.BuildDamageEvent.class, e -> {
-			if(!addBuilding.get(e.build)){
+			if(!addBuildingH.get(e.build)){
 				builds.add(e.build);
 				UnitInfo.bsupdate(e.build);
 			}
