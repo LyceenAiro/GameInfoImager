@@ -163,7 +163,7 @@ public class UnitInfo extends Table{
 					actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
 				}
 				
-				setSize(lastSize * 2f * Vars.renderer.getDisplayScale(), 14f * Vars.renderer.getDisplayScale());
+				setSize(lastSize * Vars.renderer.getDisplayScale(), 7f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
 				
@@ -247,14 +247,4 @@ public class UnitInfo extends Table{
 			this(() -> build.team.color, () -> (int)build.health() + " / " + (int)build.maxHealth(), build::healthf, () -> 1);
 		}
 	}
-
-	public static void update2(Building build) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'update2'");
-	}
-
-    public static void bupdate(Building build) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'bupdate'");
-    }
 }

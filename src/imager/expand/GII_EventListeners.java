@@ -337,8 +337,12 @@ public class GII_EventListeners{
 			
 			Seq<Unit> us = units.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2));
 			Seq<Building> bs = builds.copy().retainAll(entity -> {
-				BaseTurret.BaseTurretBuild draw = (BaseTurret.BaseTurretBuild)entity;
-				return viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2);
+				if (entity instanceof BaseTurret.BaseTurretBuild) {
+					BaseTurret.BaseTurretBuild draw = (BaseTurret.BaseTurretBuild)entity;
+					return viewport.overlaps(draw.x() - draw.range(), draw.y() - draw.range(), draw.range() * 2, draw.range() * 2);
+				}else{
+					return false;
+				}
 			});
 			
 			PointerDraw.draw();
