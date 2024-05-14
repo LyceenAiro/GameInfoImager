@@ -225,18 +225,18 @@ public class GII_EventListeners{
 			
 			Groups.build.copy(builds).retainAll(addBuilding);
 			Groups.build.copy(buildH).retainAll(addBuildingBar);
-			Groups.unit.copy(units); //.retainAll(addUnit);
+			Groups.unit.copy(units).retainAll(addUnit);
 			
 			start();
 			
 			Core.app.post(UnitInfo::addBars);
 			// for(Building build : builds)UnitInfo.bsupdate(build);
-			for(Building build : buildH){
-				UnitInfo.bsupdate(build);
-			}
-			for(Unit unit : units){
-				UnitInfo.update(unit);
-			}
+			// for(Building build : buildH){
+			// 	UnitInfo.bsupdate(build);
+			// }
+			// for(Unit unit : units){
+			// 	UnitInfo.update(unit);
+			// }
 
 		});
 		
