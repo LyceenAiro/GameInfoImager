@@ -217,7 +217,7 @@ public class GII_EventListeners{
 		
 		});
 		
-		if(!Vars.headless)Events.on(EventType.WorldLoadEndEvent.class, e -> {
+		if(!Vars.headless)Events.on(EventType.WorldLoadEvent.class, e -> {
 			minBuildSize = Core.settings.getInt(GII_Plugin.BUILDING_SIZE_FILTER, 1);
 			minUnitSize = Core.settings.getInt(GII_Plugin.UNIT_SIZE_FILTER, 0);
 			
@@ -298,13 +298,23 @@ public class GII_EventListeners{
 		// 建筑被摧毁
 		Events.on(EventType.BlockDestroyEvent.class, e -> {
 			builds.remove(e.tile.build);
+			buildH.remove(e.tile.build);
 		});
 
+		// 建筑被子弹摧毁
+		Events.on(EventType.BuildingBulletDestroyEvent.class, e -> {
+			builds.remove(e.build);
+			buildH.remove(e.build);
+		});
+		
 		// 单位被击毁
 		Events.on(EventType.UnitDestroyEvent.class, e -> {
-			// if(e.unit != null && addUnit.get(e.unit)){
 				units.remove(e.unit);
-			// }
+		});
+
+		// 单位被子弹摧毁
+		Events.on(EventType.UnitBulletDestroyEvent.class, e -> {
+				units.remove(e.unit);
 		});
 		
 		// 单位被创建
