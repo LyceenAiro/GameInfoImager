@@ -213,10 +213,9 @@ public class GII_EventListeners{
 		signDrawer.add(new DrawPair<>(unit -> unit.type.health > 400, unit -> drawFunc.get(T2, unit)));
 		signDrawer.add(new DrawPair<>(unit -> true, unit -> drawFunc.get(T1, unit)));
 		
-		Events.on(EventType.ClientLoadEvent.class, e -> {
+		Events.on(EventType.ClientLoadEvent.class, e -> {});
 		
-		});
-		
+		// 地图加载的初始化
 		if(!Vars.headless)Events.on(EventType.WorldLoadEvent.class, e -> {
 			minBuildSize = Core.settings.getInt(GII_Plugin.BUILDING_SIZE_FILTER, 1);
 			minUnitSize = Core.settings.getInt(GII_Plugin.UNIT_SIZE_FILTER, 0);
@@ -230,7 +229,11 @@ public class GII_EventListeners{
 			
 			start();
 			
-			Core.app.post(UnitInfo::addBars);
+			// Core.app.post(UnitInfo::addBars);
+			// for(Building build : builds)UnitInfo.bsupdate(build);
+			for(Building build : buildH)UnitInfo.bsupdate(build);
+			for(Unit unit : units)UnitInfo.update(unit);
+
 		});
 		
 		Events.run(EventType.Trigger.update, () -> {
@@ -312,6 +315,11 @@ public class GII_EventListeners{
 				units.remove(e.unit);
 		});
 
+		// 单位溺亡
+		Events.on(EventType.UnitDrownEvent.class, e -> {
+			units.remove(e.unit);
+		});
+
 		// 单位被子弹摧毁
 		Events.on(EventType.UnitBulletDestroyEvent.class, e -> {
 				units.remove(e.unit);
@@ -333,7 +341,7 @@ public class GII_EventListeners{
 			}
 		});
 
-		// 单位作为负荷被卸载
+		// 单位作为负荷被卸载，被制造出的单位也算
 		Events.on(EventType.UnitUnloadEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
 				units.add(e.unit);
