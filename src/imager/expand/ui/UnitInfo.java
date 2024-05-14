@@ -213,6 +213,7 @@ public class UnitInfo extends Table{
 		init();
 		
 		Groups.unit.each(e -> !added.keys().toArray().contains(e.id()), UnitInfo::create);
+		Groups.build.each(e -> !added.keys().toArray().contains(e.id()), UnitInfo::create2);
 	}
 	
 	public static void create(Unit unit){
