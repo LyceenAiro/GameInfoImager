@@ -231,8 +231,12 @@ public class GII_EventListeners{
 			
 			Core.app.post(UnitInfo::addBars);
 			// for(Building build : builds)UnitInfo.bsupdate(build);
-			for(Building build : buildH)UnitInfo.bsupdate(build);
-			for(Unit unit : units)UnitInfo.update(unit);
+			for(Building build : buildH){
+				UnitInfo.bsupdate(build);
+			}
+			for(Unit unit : units){
+				UnitInfo.update(unit);
+			}
 
 		});
 		
