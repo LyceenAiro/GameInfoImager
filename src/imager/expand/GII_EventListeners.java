@@ -243,6 +243,7 @@ public class GII_EventListeners{
 			GII_Plugin.showBulidHealth = Core.settings.getBool(GII_Plugin.SHOW_BUILD_HEALTH_BAR, true);
 			GII_Plugin.showBuildBar = Core.settings.getBool(GII_Plugin.SHOW_BUILD_BAR, true);
 			GII_Plugin.drawOtherTeam = Core.settings.getBool(GII_Plugin.SHOW_OTHER_TEAM, true);
+			GII_Plugin.drawHighlight = Core.settings.getBool(GII_Plugin.SHOW_HIGHLIGHT, true);
 
 			// if(timer.get(1, 30f)){
 			// 	// taskQueue.post(() -> {
@@ -325,13 +326,13 @@ public class GII_EventListeners{
 		});
 
 		// 单位状态改变
-		Events.on(EventType.UnitChangeEvent.class, e -> {
-			if(e.unit != null && addUnit.get(e.unit)){
-				// units.remove(e.unit);
-				units.add(e.unit);
-				UnitInfo.update(e.unit);
-			}
-		});
+		// Events.on(EventType.UnitChangeEvent.class, e -> {
+		// 	if(e.unit != null && addUnit.get(e.unit)){
+		// 		// units.remove(e.unit);
+		// 		units.add(e.unit);
+		// 		UnitInfo.update(e.unit);
+		// 	}
+		// });
 		
 		Events.run(EventType.Trigger.draw, () -> {
 			float z = Draw.z();
