@@ -36,6 +36,10 @@ import mindustry.ui.Fonts;
 import mindustry.world.blocks.defense.turrets.BaseTurret;
 import mindustry.world.blocks.defense.turrets.Turret;
 
+//
+//  这里的代码绑定了各种事件类型触发的函数
+//  包括进入地图，单位和方块变化等
+//
 
 public class GII_EventListeners{
 	public static final Rect viewport = new Rect();

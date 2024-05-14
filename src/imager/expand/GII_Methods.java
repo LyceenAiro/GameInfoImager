@@ -8,6 +8,10 @@ import mindustry.type.UnitType;
 
 import static mindustry.Vars.state;
 
+//
+//  这里的代码主要处理波次信息的数据
+//
+
 public class GII_Methods{
 	public static float maxWaveHealth = 0;
 	public static float initialWaveShield = 0;

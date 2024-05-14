@@ -25,6 +25,10 @@ import mindustry.type.UnitType;
 import mindustry.ui.Styles;
 import mindustry.world.Tile;
 
+//
+//  这里的代码主要处理波次信息的HUD显示
+//
+
 public class GII_HUD{
 	public static Rect viewport = new Rect();
 	public static ObjectIntMap<UnitType> willBeSpawn = new ObjectIntMap<>();

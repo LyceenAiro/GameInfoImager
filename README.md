@@ -1,8 +1,5 @@
-# Fork Log
-## v1.4
-- Removed annoying turrets related health bars
-- Supports Gradle-8.2.1 and Java17 environments
-- Compile using Mindustry v146 environment
+# Mindustry-GameInfoImager
+## More Update Watch To Releases
   
 # Range Imager
 Show the range of turrets and units.

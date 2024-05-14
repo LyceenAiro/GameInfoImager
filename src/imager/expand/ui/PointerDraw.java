@@ -23,6 +23,10 @@ import mindustry.graphics.Drawf;
 import mindustry.graphics.Pal;
 import mindustry.ui.Styles;
 
+//
+//  这里的代码主要处理单位和方块的指针悬浮条
+//
+
 public class PointerDraw{
 	public static Sized last, cur;
 	

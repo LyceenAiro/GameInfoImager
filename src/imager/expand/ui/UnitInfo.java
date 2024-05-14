@@ -27,6 +27,10 @@ import mindustry.graphics.Pal;
 import mindustry.ui.Fonts;
 import mindustry.ui.Styles;
 
+//
+//  这里的代码主要处理单位和方块悬浮条
+//
+
 public class UnitInfo extends Table{
 	public static final IntMap<Table> added = new IntMap<>();
 	protected static int lastID = -1, lastSize;

@@ -12,6 +12,9 @@ import mindustry.game.EventType.ClientLoadEvent;
 import mindustry.mod.Mods;
 import mindustry.mod.Plugin;
 
+//
+//  这里主要注册、存储和初始化配置文件
+//
 
 public class GII_Plugin extends Plugin{
 	public static Mods.LoadedMod MOD;

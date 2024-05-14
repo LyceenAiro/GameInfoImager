@@ -1,9 +1,9 @@
-displayName: "Game Info Imager"
+displayName: "Game Info Imager(LyceenAiro Fork)"
 author: "Yuria & LyceenAiro"
 name: "game-info-imager"
 main: "imager.GII_Plugin"
-description: "Show the range of units. -maybe-\nShow the units the next wave will spawn."
-version: "1.4"
+description: "Show the range of units and block. -maybe-\nShow the units the next wave will spawn."
+version: "1.5"
 hidden: "true"
 
 minGameVersion: 146
