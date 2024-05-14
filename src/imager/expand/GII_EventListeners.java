@@ -217,7 +217,7 @@ public class GII_EventListeners{
 		
 		});
 		
-		if(!Vars.headless)Events.on(EventType.WorldLoadEvent.class, e -> {
+		if(!Vars.headless)Events.on(EventType.WorldLoadEndEvent.class, e -> {
 			minBuildSize = Core.settings.getInt(GII_Plugin.BUILDING_SIZE_FILTER, 1);
 			minUnitSize = Core.settings.getInt(GII_Plugin.UNIT_SIZE_FILTER, 0);
 			
