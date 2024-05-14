@@ -229,7 +229,7 @@ public class GII_EventListeners{
 			
 			start();
 			
-			// Core.app.post(UnitInfo::addBars);
+			Core.app.post(UnitInfo::addBars);
 			// for(Building build : builds)UnitInfo.bsupdate(build);
 			for(Building build : buildH)UnitInfo.bsupdate(build);
 			for(Unit unit : units)UnitInfo.update(unit);
