@@ -225,7 +225,7 @@ public class GII_EventListeners{
 			
 			Groups.build.copy(builds).retainAll(addBuilding);
 			Groups.build.copy(buildH).retainAll(addBuildingBar);
-			Groups.unit.copy(units).retainAll(addUnit);
+			Groups.unit.copy(units); //.retainAll(addUnit);
 			
 			start();
 			
