@@ -199,6 +199,7 @@ public class GII_EventListeners{
 	}
 	
 	public static final Boolf<Building> addBuilding = b -> b instanceof Turret.TurretBuild && ((Turret.TurretBuild)b).hasAmmo() && b.isValid() && b.block.size >= minBuildSize;
+	public static final Boolf<Building> addBuildingBar = b -> b.isValid() && b.health < b.maxHealth;
 	public static final Boolf<Unit> addUnit = u -> u.isValid() && u.hitSize() >= minUnitSize * Vars.tilesize;
 	
 	public static void load(){
@@ -220,6 +221,7 @@ public class GII_EventListeners{
 			units.clear();
 			
 			Groups.build.copy(builds).retainAll(addBuilding);
+			Groups.build.copy(buildH).retainAll(addBuildingBar);
 			Groups.unit.copy(units).retainAll(addUnit);
 			
 			start();
@@ -317,7 +319,7 @@ public class GII_EventListeners{
 			}
 		});
 
-		// 单位被作为负荷提走
+		// 单位作为负荷被卸载
 		Events.on(EventType.UnitUnloadEvent.class, e -> {
 			if(e.unit != null && addUnit.get(e.unit)){
 				units.add(e.unit);
@@ -325,14 +327,13 @@ public class GII_EventListeners{
 			}
 		});
 
-		// 单位状态改变
-		// Events.on(EventType.UnitChangeEvent.class, e -> {
-		// 	if(e.unit != null && addUnit.get(e.unit)){
-		// 		// units.remove(e.unit);
-		// 		units.add(e.unit);
-		// 		UnitInfo.update(e.unit);
-		// 	}
-		// });
+		Events.on(EventType.UnitUnloadEvent.class, e -> {
+			if(e.unit != null && addUnit.get(e.unit)){
+				units.add(e.unit);
+				UnitInfo.update(e.unit);
+			}
+		});
+
 		
 		Events.run(EventType.Trigger.draw, () -> {
 			float z = Draw.z();
