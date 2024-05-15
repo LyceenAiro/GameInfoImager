@@ -177,7 +177,7 @@ public class UnitInfo extends Table{
 					GII_EventListeners.buildH.remove(build); // 建筑满血时移除血条
 				}
 				
-				setSize(lastSize * Vars.renderer.getDisplayScale(), 7f * Vars.renderer.getDisplayScale());
+				setSize(lastSize * Vars.renderer.getDisplayScale(), lastSize * 7f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
 				
