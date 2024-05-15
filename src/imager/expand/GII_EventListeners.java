@@ -257,6 +257,7 @@ public class GII_EventListeners{
 			GII_Plugin.showBuildBar = Core.settings.getBool(GII_Plugin.SHOW_BUILD_BAR, true);
 			GII_Plugin.drawOtherTeam = Core.settings.getBool(GII_Plugin.SHOW_OTHER_TEAM, true);
 			GII_Plugin.drawHighlight = Core.settings.getBool(GII_Plugin.SHOW_HIGHLIGHT, true);
+			GII_Plugin.simpleHealthBar = Core.settings.getBool(GII_Plugin.SIMPLE_HEALTH_BAR, true);
 
 			// if(timer.get(1, 30f)){
 			// 	// taskQueue.post(() -> {

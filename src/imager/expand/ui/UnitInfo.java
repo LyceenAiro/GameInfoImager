@@ -63,8 +63,12 @@ public class UnitInfo extends Table{
 			bar.blinked = true;
 			add(bar).grow().padBottom(4f).row();
 			
-			UnitHealthBar bar2 = new UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
-			
+			UnitHealthBar bar2;
+			if(GII_Plugin.simpleHealthBar){
+				bar2 = new UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
+			}else{
+				bar2 = new UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? (int)unit.health() : "Destroyed"), unit::healthf, () -> 1);
+			};
 			bar2.blinkable = true;
 			bar2.blinkColor = Pal.redderDust;
 			bar2.blinked = true;
@@ -123,8 +127,12 @@ public class UnitInfo extends Table{
 
 	public static Table healthTable(Building build){
 		return new Table(Styles.black3){{
-			UnitHealthBar bar = new UnitHealthBar(() -> build.team.color, () -> Iconc.add + " : " + (build.health() > 0 ? ((int)build.health() + " / " + (int)build.maxHealth()) : "Destroyed"), build::healthf, () -> 1);
-			
+			UnitHealthBar bar;
+			if(GII_Plugin.simpleHealthBar){
+				bar = new UnitHealthBar(() -> build.team.color, () -> Iconc.add + " : " + (build.health() > 0 ? (int)build.health() : "Destroyed"), build::healthf, () -> 1);
+			}else{
+				bar = new UnitHealthBar(() -> build.team.color, () -> Iconc.add + " : " + (build.health() > 0 ? ((int)build.health() + " / " + (int)build.maxHealth()) : "Destroyed"), build::healthf, () -> 1);
+			};
 			bar.blinkable = true;
 			bar.blinkColor = Pal.redderDust;
 			bar.blinked = true;

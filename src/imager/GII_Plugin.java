@@ -36,11 +36,12 @@ public class GII_Plugin extends Plugin{
 	public static final String SHOW_UNIT_HEALTH_BAR = "nh.ui.wave.unit-health-bar";
 	public static final String SHOW_BUILD_BAR = "nh.ui.wave.build-bar";
 	public static final String SHOW_BUILD_HEALTH_BAR = "nh.ui.wave.build-health-bar";
+	public static final String SIMPLE_HEALTH_BAR = "nh.ui.wave.simple-bar";
 	
 	public static int buildingShowMinSize = 1;
 	public static float unitShowMinSize = 1;
 	
-	public static boolean drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBuildBar, showBulidHealth;
+	public static boolean drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBuildBar, showBulidHealth, simpleHealthBar;
 	
 	public GII_Plugin(){
 		Events.on(ClientLoadEvent.class, e -> {
@@ -48,6 +49,7 @@ public class GII_Plugin extends Plugin{
 			Vars.ui.settings.game.checkPref(SHOW_UNIT_HEALTH_BAR, true);
 			Vars.ui.settings.game.checkPref(SHOW_BUILD_BAR, true);
 			Vars.ui.settings.game.checkPref(SHOW_BUILD_HEALTH_BAR, true);
+			Vars.ui.settings.game.checkPref(SIMPLE_HEALTH_BAR, true);
 			Vars.ui.settings.game.checkPref(SHOW_WAVE_INFO, true);
 			Vars.ui.settings.game.checkPref(SHOW_WAVE_DETAILS, true);
 			Vars.ui.settings.game.sliderPref(SHOW_WAVE_PER_LINE, 10, 4, 20, 1, i -> "*" + i);
@@ -87,7 +89,7 @@ public class GII_Plugin extends Plugin{
 				else NHPColor.ally2.set(Color.clear);
 			});
 			
-			Vars.ui.settings.graphics.sliderPref(ALPHA, 60, 0, 100, 5, i -> i + "%");
+			Vars.ui.settings.graphics.sliderPref(ALPHA, 40, 0, 100, 5, i -> i + "%");
 			Vars.ui.settings.graphics.sliderPref(BUILDING_SIZE_FILTER, 1, 1, Vars.maxBlockSize, i -> i + " [accent]"  + Core.bundle.get("unit.blocks"));
 			Vars.ui.settings.graphics.sliderPref(UNIT_SIZE_FILTER, 0, 0, 20, i -> i + " [accent]" + Core.bundle.get("unit.blockssquared"));
 		});
@@ -107,6 +109,7 @@ public class GII_Plugin extends Plugin{
 		drawAlly = Core.settings.getBool(SHOW_ALLY, true);
 		drawOtherTeam = Core.settings.getBool(SHOW_OTHER_TEAM, true);
 		drawHighlight = Core.settings.getBool(SHOW_HIGHLIGHT, true);
+		simpleHealthBar = Core.settings.getBool(SIMPLE_HEALTH_BAR, true);
 		
 		if(drawAlly && drawOtherTeam)NHPColor.ally.set(NHPColor.ally_copier);
 		else NHPColor.ally.set(Color.clear);
