@@ -170,14 +170,14 @@ public class UnitInfo extends Table{
 				if(build.isValid() && build.health() < build.maxHealth()){
 				// if(build.isValid()){
 					lastSize = build.hitSize();
-					lastPosition.set(build).add(-build.hitSize() / 2, (build.hitSize() / 2) - (lastSize / 8));
+					lastPosition.set(build).add(-build.hitSize() / 2, (build.hitSize() / 2) - lastSize);
 				}else if(!fade){
 					fade = true;
 					actions(Actions.color(Pal.redderDust, 0.5f), Actions.delay(0.5f), Actions.fadeOut(0.85f), Actions.remove());
 					GII_EventListeners.buildH.remove(build); // 建筑满血时移除血条
 				}
 				
-				setSize(lastSize * Vars.renderer.getDisplayScale(), (lastSize / 8) * Vars.renderer.getDisplayScale());
+				setSize(lastSize * Vars.renderer.getDisplayScale(), (lastSize / 6) * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
 				
