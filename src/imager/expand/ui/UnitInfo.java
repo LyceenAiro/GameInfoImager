@@ -126,7 +126,7 @@ public class UnitInfo extends Table{
 	}
 
 	public static Table healthTable(Building build){
-		return new Table(Styles.black3){{
+		return new Table(Styles.none){{
 			UnitHealthBar bar;
 			if(GII_Plugin.simpleHealthBar){
 				bar = new UnitHealthBar(() -> build.team.color, () -> Iconc.add + " : " + (build.health() > 0 ? (int)build.health() : "Destroyed"), build::healthf, () -> 1);
