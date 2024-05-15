@@ -139,16 +139,16 @@ public class UnitInfo extends Table{
 			
 			add(bar).grow();
 			
-			touchable = Touchable.enabled;
+			touchable = Touchable.disabled;
 			
-			hovered(() -> {
-				toFront();
-				setBackground(Styles.black8);
-			});
+			// hovered(() -> {
+			// 	toFront();
+			// 	setBackground(Styles.black8);
+			// });
 			
-			exited(() -> {
-				setBackground(Styles.black3);
-			});
+			// exited(() -> {
+			// 	setBackground(Styles.black3);
+			// });
 			
 			visible(() -> GII_Plugin.showHealthBar);
 		}
