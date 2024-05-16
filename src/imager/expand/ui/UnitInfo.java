@@ -177,7 +177,7 @@ public class UnitInfo extends Table{
 					GII_EventListeners.buildH.remove(build); // 建筑满血时移除血条
 				}
 				
-				setSize(lastSize * Vars.renderer.getDisplayScale(), (lastSize / 6) * Vars.renderer.getDisplayScale());
+				setSize(lastSize * Vars.renderer.getDisplayScale(), 4f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
 				
@@ -255,11 +255,27 @@ public class UnitInfo extends Table{
 			fontScale = b -> Mathf.clamp(b.getHeight() / Fonts.outline.getData().lineHeight * b.scaleY * 0.85f, 0.001f, b.scaleY);
 		}
 		
+		public static Prov<CharSequence> healthInfo(Unit unit){
+			if(GII_Plugin.simpleHealthBar){
+				return () -> String.valueOf((int)unit.health());
+			} else {
+				return () -> (int)unit.health() + " / " + (int)unit.maxHealth();
+			}
+		}
+		
+		public static Prov<CharSequence> healthInfo(Building build){
+			if(GII_Plugin.simpleHealthBar){
+				return () -> String.valueOf((int)build.health());
+			} else {
+				return () -> (int)build.health() + " / " + (int)build.maxHealth();
+			}
+		}
+
 		public UnitHealthBar(Unit unit){
-			this(() -> unit.team.color, () -> (int)unit.health() + " / " + (int)unit.maxHealth(), unit::healthf, () -> 1);
+			this(() -> unit.team.color, () -> healthInfo(unit) + "", unit::healthf, () -> 1);
 		}
 		public UnitHealthBar(Building build){
-			this(() -> build.team.color, () -> (int)build.health() + " / " + (int)build.maxHealth(), build::healthf, () -> 1);
+			this(() -> build.team.color, () -> healthInfo(build) + "", build::healthf, () -> 1);
 		}
 	}
 }
