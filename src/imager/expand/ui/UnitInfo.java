@@ -75,16 +75,19 @@ public class UnitInfo extends Table{
 			
 			add(bar2).grow();
 			
+			if(!GII_Plugin.TouchBlackBar){
+				touchable = Touchable.disabled;
+			}else{
 			touchable = Touchable.enabled;
-			
-			hovered(() -> {
-				toFront();
-				setBackground(Styles.black8);
-			});
-			
-			exited(() -> {
-				setBackground(Styles.black3);
-			});
+				hovered(() -> {
+					toFront();
+					setBackground(Styles.black8);
+				});
+				
+				exited(() -> {
+					setBackground(Styles.black3);
+				});
+			}
 			
 			visible(() -> GII_Plugin.showHealthBar);
 		}
@@ -126,7 +129,7 @@ public class UnitInfo extends Table{
 	}
 
 	public static Table healthTable(Building build){
-		return new Table(Styles.none){{
+		return new Table(Styles.black3){{
 			UnitHealthBar bar;
 			if(GII_Plugin.simpleHealthBar){
 				bar = new UnitHealthBar(() -> build.team.color, () -> Iconc.add + " : " + (build.health() > 0 ? (int)build.health() : "Destroyed"), build::healthf, () -> 1);
@@ -139,16 +142,19 @@ public class UnitInfo extends Table{
 			
 			add(bar).grow();
 			
-			touchable = Touchable.disabled;
-			
-			// hovered(() -> {
-			// 	toFront();
-			// 	setBackground(Styles.black8);
-			// });
-			
-			// exited(() -> {
-			// 	setBackground(Styles.black3);
-			// });
+			if(!GII_Plugin.TouchBlackBar){
+				touchable = Touchable.disabled;
+			}else{
+				touchable = Touchable.enabled;
+				hovered(() -> {
+					toFront();
+					setBackground(Styles.black8);
+				});
+				
+				exited(() -> {
+					setBackground(Styles.black3);
+				});
+			}
 			
 			visible(() -> GII_Plugin.showHealthBar);
 		}
@@ -177,7 +183,7 @@ public class UnitInfo extends Table{
 					GII_EventListeners.buildH.remove(build); // 建筑满血时移除血条
 				}
 				
-				setSize(lastSize * Vars.renderer.getDisplayScale(), 4f * Vars.renderer.getDisplayScale());
+				setSize(lastSize * Vars.renderer.getDisplayScale(), 5f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
 				
