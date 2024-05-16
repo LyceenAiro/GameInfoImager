@@ -183,7 +183,8 @@ public class UnitInfo extends Table{
 					GII_EventListeners.buildH.remove(build); // 建筑满血时移除血条
 				}
 				
-				setSize(lastSize * Vars.renderer.getDisplayScale(), 5f * Vars.renderer.getDisplayScale());
+				if(lastSize == 1)setSize(lastSize * Vars.renderer.getDisplayScale(), 3f * Vars.renderer.getDisplayScale());
+				else setSize(lastSize * Vars.renderer.getDisplayScale(), 5f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
 				
@@ -261,7 +262,7 @@ public class UnitInfo extends Table{
 			fontScale = b -> Mathf.clamp(b.getHeight() / Fonts.outline.getData().lineHeight * b.scaleY * 0.85f, 0.001f, b.scaleY);
 		}
 		
-		public static Prov<CharSequence> healthInfo(Unit unit){
+		static Prov<CharSequence> healthInfo(Unit unit){
 			if(GII_Plugin.simpleHealthBar){
 				return () -> String.valueOf((int)unit.health());
 			} else {
@@ -269,7 +270,7 @@ public class UnitInfo extends Table{
 			}
 		}
 		
-		public static Prov<CharSequence> healthInfo(Building build){
+		static Prov<CharSequence> healthInfo(Building build){
 			if(GII_Plugin.simpleHealthBar){
 				return () -> String.valueOf((int)build.health());
 			} else {

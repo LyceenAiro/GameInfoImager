@@ -48,7 +48,7 @@ public class GII_Plugin extends Plugin{
 		Events.on(ClientLoadEvent.class, e -> {
 		
 			Vars.ui.settings.game.checkPref(SHOW_UNIT_HEALTH_BAR, true);
-			Vars.ui.settings.game.checkPref(TOUCH_BLACK_BAR, true);
+			Vars.ui.settings.game.checkPref(TOUCH_BLACK_BAR, false);
 			Vars.ui.settings.game.checkPref(SHOW_BUILD_BAR, true);
 			Vars.ui.settings.game.checkPref(SHOW_BUILD_HEALTH_BAR, true);
 			Vars.ui.settings.game.checkPref(SIMPLE_HEALTH_BAR, true);
@@ -112,7 +112,7 @@ public class GII_Plugin extends Plugin{
 		drawOtherTeam = Core.settings.getBool(SHOW_OTHER_TEAM, true);
 		drawHighlight = Core.settings.getBool(SHOW_HIGHLIGHT, true);
 		simpleHealthBar = Core.settings.getBool(SIMPLE_HEALTH_BAR, true);
-		TouchBlackBar = Core.settings.getBool(TOUCH_BLACK_BAR, true);
+		TouchBlackBar = Core.settings.getBool(TOUCH_BLACK_BAR, false);
 		
 		if(drawAlly && drawOtherTeam)NHPColor.ally.set(NHPColor.ally_copier);
 		else NHPColor.ally.set(Color.clear);
