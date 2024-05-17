@@ -13,7 +13,6 @@ import arc.scene.event.Touchable;
 import arc.scene.ui.layout.Table;
 import arc.scene.ui.layout.WidgetGroup;
 import arc.struct.IntMap;
-// import arc.util.Strings;
 // import arc.struct.Seq;
 import arc.util.Tmp;
 import imager.GII_Plugin;
@@ -56,7 +55,7 @@ public class UnitInfo extends Table{
 			int ms = (int)(unit.health() / 2);
 			if(unit.shield() > 0) ms = (int) unit.shield();
 			int maxshield = ms;
-			UnitShieldBar bar = new UnitShieldBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield)
+			UnitHealthBar bar = new UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield)
 			);
 			bar.blinkable = true;
 			bar.rootColor = Color.royal;
@@ -254,28 +253,6 @@ public class UnitInfo extends Table{
 		added.put(build.id, info);
 		lastID = build.id;
 		root.addChild(info);
-	}
-
-	public static class UnitShieldBar extends DelaySlideBar{
-		static int max = 100;
-		public UnitShieldBar(Prov<Color> colorReal, Prov<CharSequence> info, Floatp valueGetter, Floatp maxValue){
-			super(colorReal, info, valueGetter, maxValue);
-			
-			fontScale = b -> Mathf.clamp(b.getHeight() / Fonts.outline.getData().lineHeight * b.scaleY * 0.85f, 0.001f, b.scaleY);
-		}
-		
-		static Prov<CharSequence> ShiledInfo(Unit unit){
-			return () -> String.valueOf((int)unit.shield());
-		}
-
-		static int MaxShield(Unit unit){
-			if(unit.shield() > max)max = (int)unit.shield();
-			return max;
-		}
-
-		public UnitShieldBar(Unit unit){
-			this(() -> unit.team.color, () -> ShiledInfo(unit) + "", unit::shield, () -> MaxShield(unit));
-		}
 	}
 
 	public static class UnitHealthBar extends DelaySlideBar{
