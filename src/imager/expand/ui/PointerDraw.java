@@ -60,7 +60,7 @@ public class PointerDraw{
 							add(barArc).grow().padBottom(2).row();
 						}
 						
-						int ms = 100;
+						int ms = (int)(unit.health() / 2);
 						if(unit.shield() > 0) ms = (int) unit.shield();
 						final int maxshield = ms;
 						UnitInfo.UnitHealthBar bar = new UnitInfo.UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield));

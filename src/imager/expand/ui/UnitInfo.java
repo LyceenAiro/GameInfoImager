@@ -52,7 +52,7 @@ public class UnitInfo extends Table{
 
 	public static Table healthTable(Unit unit){
 		return new Table(Styles.black3){{
-			int ms = 100;
+			int ms = (int)(unit.health() / 2);
 			if(unit.shield() > 0) ms = (int) unit.shield();
 			final int maxshield = ms;
 			UnitHealthBar bar = new UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield)
@@ -65,9 +65,9 @@ public class UnitInfo extends Table{
 			
 			UnitHealthBar bar2;
 			if(GII_Plugin.simpleHealthBar){
-				bar2 = new UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
-			}else{
 				bar2 = new UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? (int)unit.health() : "Destroyed"), unit::healthf, () -> 1);
+			}else{
+				bar2 = new UnitHealthBar(() -> unit.team.color, () -> Iconc.add + " : " + (unit.health() > 0 ? ((int)unit.health() + " / " + (int)unit.maxHealth()) : "Destroyed"), unit::healthf, () -> 1);
 			};
 			bar2.blinkable = true;
 			bar2.blinkColor = Pal.redderDust;
@@ -183,7 +183,7 @@ public class UnitInfo extends Table{
 					GII_EventListeners.buildH.remove(build); // 建筑满血时移除血条
 				}
 				
-				if(lastSize <= 8)setSize(lastSize * Vars.renderer.getDisplayScale(), 3f * Vars.renderer.getDisplayScale());
+				if(lastSize <= 8)setSize(lastSize * Vars.renderer.getDisplayScale(), 4f * Vars.renderer.getDisplayScale());
 				else setSize(lastSize * Vars.renderer.getDisplayScale(), 5f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
