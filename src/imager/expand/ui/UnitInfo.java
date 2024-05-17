@@ -13,6 +13,7 @@ import arc.scene.event.Touchable;
 import arc.scene.ui.layout.Table;
 import arc.scene.ui.layout.WidgetGroup;
 import arc.struct.IntMap;
+// import arc.util.Strings;
 // import arc.struct.Seq;
 import arc.util.Tmp;
 import imager.GII_Plugin;
@@ -54,8 +55,8 @@ public class UnitInfo extends Table{
 		return new Table(Styles.black3){{
 			int ms = (int)(unit.health() / 2);
 			if(unit.shield() > 0) ms = (int) unit.shield();
-			final int maxshield = ms;
-			UnitHealthBar bar = new UnitHealthBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield)
+			int maxshield = ms;
+			UnitShieldBar bar = new UnitShieldBar(() -> Pal.lancerLaser, () -> Iconc.commandRally + " : " + (unit.shield() < 0 ? "SHIELD DOWNED" : (int)unit.shield()), unit::shield, () -> Math.max(unit.shield(), maxshield)
 			);
 			bar.blinkable = true;
 			bar.rootColor = Color.royal;
@@ -183,7 +184,7 @@ public class UnitInfo extends Table{
 					GII_EventListeners.buildH.remove(build); // 建筑满血时移除血条
 				}
 				
-				if(lastSize <= 8)setSize(lastSize * Vars.renderer.getDisplayScale(), 4f * Vars.renderer.getDisplayScale());
+				if(lastSize <= 8)setSize(lastSize * Vars.renderer.getDisplayScale(), 3f * Vars.renderer.getDisplayScale());
 				else setSize(lastSize * Vars.renderer.getDisplayScale(), 5f * Vars.renderer.getDisplayScale());
 				Tmp.v4.set(Core.camera.project(Tmp.v1.set(lastPosition)));
 				setPosition(Tmp.v4.x, Tmp.v4.y);
@@ -253,6 +254,28 @@ public class UnitInfo extends Table{
 		added.put(build.id, info);
 		lastID = build.id;
 		root.addChild(info);
+	}
+
+	public static class UnitShieldBar extends DelaySlideBar{
+		static int max = 100;
+		public UnitShieldBar(Prov<Color> colorReal, Prov<CharSequence> info, Floatp valueGetter, Floatp maxValue){
+			super(colorReal, info, valueGetter, maxValue);
+			
+			fontScale = b -> Mathf.clamp(b.getHeight() / Fonts.outline.getData().lineHeight * b.scaleY * 0.85f, 0.001f, b.scaleY);
+		}
+		
+		static Prov<CharSequence> ShiledInfo(Unit unit){
+			return () -> String.valueOf((int)unit.shield());
+		}
+
+		static int MaxShield(Unit unit){
+			if(unit.shield() > max)max = (int)unit.shield();
+			return max;
+		}
+
+		public UnitShieldBar(Unit unit){
+			this(() -> unit.team.color, () -> ShiledInfo(unit) + "", unit::shield, () -> MaxShield(unit));
+		}
 	}
 
 	public static class UnitHealthBar extends DelaySlideBar{
