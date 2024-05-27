@@ -51,7 +51,10 @@ public class PointerDraw{
 						ShieldArcAbility finalShield = shield;
 						
 						if(shield != null){
-							UnitInfo.UnitHealthBar barArc = new UnitInfo.UnitHealthBar(() -> NHPColor.lightSkyFront, () -> Iconc.upOpen + " : " + (finalShield.data < 0 ? "ARC SHIELD DOWNED" : (int)finalShield.data), () -> finalShield.data, () -> finalShield.max);
+							int ms = (int)(unit.health() / 2);
+							if(unit.shield() > 0) ms = (int) (unit.shield() + unit.health() / 2);
+							final int maxshield = ms;
+							UnitInfo.UnitHealthBar barArc = new UnitInfo.UnitHealthBar(() -> NHPColor.lightSkyFront, () -> Iconc.upOpen + " : " + (finalShield.data < 0 ? "ARC SHIELD DOWNED" : (int)finalShield.data), () -> finalShield.data, () -> maxshield);
 							
 							barArc.blinkable = true;
 							barArc.rootColor = NHPColor.lightSky;
