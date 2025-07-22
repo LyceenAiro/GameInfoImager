@@ -42,7 +42,7 @@ public class GII_Plugin extends Plugin{
 	public static int buildingShowMinSize = 1;
 	public static float unitShowMinSize = 1;
 	
-	public static boolean drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBuildBar, showBulidHealth, simpleHealthBar, TouchBlackBar;
+	public static boolean drawUnitSign, drawAlly, drawOtherTeam, drawHighlight, showHealthBar, showBuildBar, showBulidHealth, simpleHealthBar, TouchBlackBar;
 	
 	public GII_Plugin(){
 		Events.on(ClientLoadEvent.class, e -> {
@@ -108,6 +108,7 @@ public class GII_Plugin extends Plugin{
 		showBulidHealth = Core.settings.getBool(SHOW_BUILD_HEALTH_BAR, true);
 		showHealthBar = Core.settings.getBool(SHOW_UNIT_HEALTH_BAR, true);
 		showBuildBar = Core.settings.getBool(SHOW_BUILD_BAR, true);
+		drawUnitSign = Core.settings.getBool(DRAW_UNIT_SIGN, true);
 		drawAlly = Core.settings.getBool(SHOW_ALLY, true);
 		drawOtherTeam = Core.settings.getBool(SHOW_OTHER_TEAM, true);
 		drawHighlight = Core.settings.getBool(SHOW_HIGHLIGHT, true);

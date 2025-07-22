@@ -411,7 +411,7 @@ public class GII_EventListeners{
 			
 			Draw.blend();
 			
-			if(Core.settings.getBool(GII_Plugin.DRAW_UNIT_SIGN, true) && Vars.ui.hudfrag.shown){
+			if(GII_Plugin.drawUnitSign && Vars.ui.hudfrag.shown){
 				Seq<Unit> us2 = us.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.hitSize(), draw.y() - draw.hitSize(), draw.hitSize() * 2, draw.hitSize() * 2));
 				
 				us2.each(unit -> {
