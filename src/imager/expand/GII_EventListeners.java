@@ -318,7 +318,7 @@ public class GII_EventListeners{
 		
 		// 单位被击毁
 		Events.on(EventType.UnitDestroyEvent.class, e -> {
-				units.remove(e.unit);
+			units.remove(e.unit);
 		});
 
 		// 单位溺亡
@@ -384,15 +384,15 @@ public class GII_EventListeners{
 			PointerDraw.draw();
 			
 			if(Core.settings.getBool(GII_Plugin.SETTING_KEY, true)){
-				// Draw.draw(Layer.space + 10.55f, () -> {
-				// 	Vars.renderer.effectBuffer.begin(Color.clear);
+				Draw.draw(Layer.space + 10.55f, () -> {
+					Vars.renderer.effectBuffer.begin(Color.clear);
 					
-				// 	us.each(entity -> drawer.get(entity, entity.range(), entity.hitSize()));
-				// 	bs.each(entity -> drawer.get(entity, ((BaseTurret.BaseTurretBuild)entity).range(), entity.hitSize()));
+					us.each(entity -> drawer.get(entity, entity.range(), entity.hitSize()));
+					bs.each(entity -> drawer.get(entity, ((BaseTurret.BaseTurretBuild)entity).range(), entity.hitSize()));
 					
-				// 	Vars.renderer.effectBuffer.end();
-				// 	Vars.renderer.effectBuffer.blit(NHPShaders.range);
-				// });
+					Vars.renderer.effectBuffer.end();
+					Vars.renderer.effectBuffer.blit(NHPShaders.range);
+				});
 				
 				if(GII_Plugin.drawHighlight)Draw.draw(Layer.space + 10.54f, () -> {
 					Draw.blend(Blending.additive);
@@ -411,20 +411,20 @@ public class GII_EventListeners{
 			
 			Draw.blend();
 			
-			if(Core.settings.getBool(GII_Plugin.DRAW_UNIT_SIGN, true) && Vars.ui.hudfrag.shown){
-				Seq<Unit> us2 = us.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.hitSize(), draw.y() - draw.hitSize(), draw.hitSize() * 2, draw.hitSize() * 2));
+			// if(Core.settings.getBool(GII_Plugin.DRAW_UNIT_SIGN, true) && Vars.ui.hudfrag.shown){
+			// 	Seq<Unit> us2 = us.copy().retainAll(draw -> viewport.overlaps(draw.x() - draw.hitSize(), draw.y() - draw.hitSize(), draw.hitSize() * 2, draw.hitSize() * 2));
 				
-				us2.each(unit -> {
-					Draw.z(Layer.light + 6);
-					for(DrawPair<Unit> drawer : signDrawer){
-						if(drawer.bool.get(unit)){
-							drawer.drawer.get(unit);
-							Draw.reset();
-							break;
-						}
-					}
-				});
-			}
+			// 	us2.each(unit -> {
+			// 		Draw.z(Layer.light + 6);
+			// 		for(DrawPair<Unit> drawer : signDrawer){
+			// 			if(drawer.bool.get(unit)){
+			// 				drawer.drawer.get(unit);
+			// 				Draw.reset();
+			// 				break;
+			// 			}
+			// 		}
+			// 	});
+			// }
 			
 			Draw.reset();
 			Draw.z(z);
