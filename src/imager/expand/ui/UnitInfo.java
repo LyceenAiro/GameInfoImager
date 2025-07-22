@@ -78,7 +78,7 @@ public class UnitInfo extends Table{
 			if(!GII_Plugin.TouchBlackBar){
 				touchable = Touchable.disabled;
 			}else{
-			touchable = Touchable.enabled;
+				touchable = Touchable.enabled;
 				hovered(() -> {
 					toFront();
 					setBackground(Styles.black8);
