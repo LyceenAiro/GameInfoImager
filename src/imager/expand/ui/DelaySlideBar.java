@@ -178,8 +178,8 @@ public class DelaySlideBar extends Table{
 			);
 			Draw.blend();
 		}
+
 		
-//
 		Font font = Fonts.outline;
 		GlyphLayout lay = Pools.obtain(GlyphLayout.class, GlyphLayout::new);
 		
